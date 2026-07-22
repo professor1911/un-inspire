@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F0EDE3;
+  color: #1A1A18;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Contour-line divider: a hand-drawn topographic rule instead of a plain hairline,
+   tying every section break back to Toyama's mountains-to-sea geography. */
+.contour-rule {
+  height: 14px;
+  width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 14' preserveAspectRatio='none'%3E%3Cpath d='M0 7 C 100 1, 200 13, 300 7 S 500 1, 600 7 S 800 13, 900 7 S 1100 1, 1200 7' fill='none' stroke='%2317394D' stroke-opacity='0.28' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1200px 14px;
+}
+
+.font-feature-tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Marquee ribbon */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-paused:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+::selection {
+  background: #C98A2B;
+  color: #F0EDE3;
+}
+
+:focus-visible {
+  outline: 2px solid #BF4E3A;
+  outline-offset: 3px;
+}
+
+/* Japanese type takes over automatically once <html lang="ja"> is set */
+.lang-ja .font-display {
+  font-family: "Noto Serif JP", "Fraunces", serif;
+}
+.lang-ja .font-body,
+.lang-ja body {
+  font-family: "Noto Sans JP", "IBM Plex Sans", sans-serif;
+}
+.lang-ja .font-mono {
+  font-family: "Noto Sans JP", "IBM Plex Mono", monospace;
+  letter-spacing: 0.02em;
+}
+
+/* Falling sakura petals in the hero - decorative, culturally-grounded motion.
+   Disabled entirely under prefers-reduced-motion via the rule above. */
+.petal {
+  position: absolute;
+  top: -10%;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 30% 30%, #f7d9c4, #e8734a 120%);
+  border-radius: 70% 0 70% 70%;
+  opacity: 0.55;
+  animation: petal-fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(40px, 110vh, 0) rotate(340deg);
+  }
+}
+
+/* Scroll progress bar fixed under the header */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #BF4E3A, #C98A2B);
+  z-index: 60;
+  transform-origin: left;
+}
+
+/* Custom hover cursor accent - desktop only, subtle */
+.cursor-glow {
+  position: fixed;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(191, 78, 58, 0.5);
+  pointer-events: none;
+  z-index: 70;
+  translate: -50% -50%;
+  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+@media (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
