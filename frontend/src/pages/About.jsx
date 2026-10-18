@@ -7,8 +7,6 @@ import PageHero from "../components/PageHero.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
 import ContourRule from "../components/ContourRule.jsx";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
-import PageIllustration from "../components/PageIllustration.jsx";
-import teamGoalsSvg from "../assets/illustrations/team-goals.svg";
 
 export default function About() {
   const { t } = useTranslation();
@@ -32,14 +30,6 @@ export default function About() {
           <p className="text-ink/75 leading-relaxed text-base sm:text-lg">{t("welcome.p1")}</p>
         </Reveal>
       </section>
-
-      <div className="mx-auto max-w-7xl px-5 md:px-8 pb-16 sm:pb-20 -mt-4">
-        <PageIllustration
-          src={teamGoalsSvg}
-          alt="Illustration of a team aligning around shared goals"
-          className="max-w-[260px] mx-auto"
-        />
-      </div>
 
       <ContourRule />
 

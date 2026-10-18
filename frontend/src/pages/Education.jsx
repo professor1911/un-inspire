@@ -8,9 +8,11 @@ import PageIllustration from "../components/PageIllustration.jsx";
 import continuousLearningSvg from "../assets/illustrations/continuous-learning.svg";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 export default function Education() {
   const { t } = useTranslation();
+  const loc = useLocalized();
   const [components, setComponents] = useState(null);
 
   useEffect(() => {
@@ -48,8 +50,8 @@ export default function Education() {
                   <div className="sm:col-span-1 font-mono text-xs text-vermillion">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="sm:col-span-4 font-display text-xl text-bay">{c.title}</div>
-                  <div className="sm:col-span-7 text-ink/70 leading-relaxed">{c.description}</div>
+                  <div className="sm:col-span-4 font-display text-xl text-bay">{loc(c, "title")}</div>
+                  <div className="sm:col-span-7 text-ink/70 leading-relaxed">{loc(c, "description")}</div>
                 </StaggerItem>
               ))}
             </StaggerGroup>

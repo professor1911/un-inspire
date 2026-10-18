@@ -176,7 +176,7 @@ export default function Header() {
               <Search size={19} />
             </button>
             <button
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label={open ? t("common.closeMenu") : t("common.openMenu")}
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
               className="flex items-center justify-center w-11 h-11 rounded-sm border border-bay/20 text-bay hover:border-vermillion hover:text-vermillion transition-colors"
@@ -207,9 +207,9 @@ export default function Header() {
               className="lg:hidden fixed inset-y-0 right-0 w-full sm:w-[420px] bg-bay text-paper z-50 flex flex-col"
             >
               <div className="flex items-center justify-between h-20 px-6 border-b border-paper/15">
-                <span className="font-display text-xl">Menu</span>
+                <span className="font-display text-xl">{t("common.menu")}</span>
                 <button
-                  aria-label="Close menu"
+                  aria-label={t("common.closeMenu")}
                   onClick={() => setOpen(false)}
                   className="w-11 h-11 flex items-center justify-center border border-paper/25 rounded-sm hover:border-vermillion hover:text-vermillion"
                 >

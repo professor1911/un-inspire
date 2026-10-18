@@ -1,5 +1,6 @@
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 const initialsOf = (name) => name.split(" ").map((w) => w[0]).slice(0, 2).join("");
 
@@ -10,7 +11,8 @@ const initialsOf = (name) => name.split(" ").map((w) => w[0]).slice(0, 2).join("
  */
 export default function PersonCard({ person, onOpen }) {
   const { t } = useTranslation();
-  const hasProfile = Boolean(person.description || person.quote);
+  const loc = useLocalized();
+  const hasProfile = Boolean(person.description || person.quote || person.description_ja || person.quote_ja);
   const role = t(`pages.people.categories.${person.category}`, { defaultValue: person.category });
 
   const body = (
@@ -31,8 +33,8 @@ export default function PersonCard({ person, onOpen }) {
         )}
       </div>
       <div className="mt-6 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-terrace">{role}</div>
-      <h3 className="mt-2 font-display font-bold text-xl text-bay leading-snug">{person.title}</h3>
-      {person.subtitle && <p className="mt-2 text-sm text-ink/60 leading-relaxed max-w-[18rem]">{person.subtitle}</p>}
+      <h3 className="mt-2 font-display font-bold text-xl text-bay leading-snug">{loc(person, "title")}</h3>
+      {(person.subtitle || person.subtitle_ja) && <p className="mt-2 text-sm text-ink/60 leading-relaxed max-w-[18rem]">{loc(person, "subtitle")}</p>}
       {hasProfile && (
         <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-terrace group-hover:text-vermillion transition-colors">
           {t("pages.people.readProfile")} <ArrowRight size={14} />

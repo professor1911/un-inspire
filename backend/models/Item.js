@@ -42,6 +42,11 @@ const itemSchema = new mongoose.Schema(
     link: { type: String, default: "" },
     linkLabel: { type: String, default: "", maxlength: 60 }, // optional text for the link, e.g. "Faculty Profile"
     image: { type: String, default: "", maxlength: 2_000_000 }, // URL or a small base64 data URL (admin photo upload)
+    title_ja: { type: String, default: "" },
+    subtitle_ja: { type: String, default: "" },
+    description_ja: { type: String, default: "" },
+    quote_ja: { type: String, default: "" },
+    category_ja: { type: String, default: "" },
     order: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
   },

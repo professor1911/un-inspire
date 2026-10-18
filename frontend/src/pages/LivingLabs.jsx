@@ -10,9 +10,11 @@ import ecoConsciousSvg from "../assets/illustrations/eco-conscious.svg";
 import { StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 export default function LivingLabs() {
   const { t } = useTranslation();
+  const loc = useLocalized();
   const [labs, setLabs] = useState(null);
 
   useEffect(() => {
@@ -50,8 +52,8 @@ export default function LivingLabs() {
                   <TiltCard className="border border-bay/15 p-6 sm:p-7 flex gap-4 bg-white/40 h-full">
                     <MapPin className="shrink-0 text-vermillion mt-1" size={22} />
                     <div>
-                      <div className="font-display text-xl text-bay mb-2">{lab.title}</div>
-                      <p className="text-ink/70 text-sm leading-relaxed">{lab.description}</p>
+                      <div className="font-display text-xl text-bay mb-2">{loc(lab, "title")}</div>
+                      <p className="text-ink/70 text-sm leading-relaxed">{loc(lab, "description")}</p>
                     </div>
                   </TiltCard>
                 </StaggerItem>

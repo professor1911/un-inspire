@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { fetchItems } from "../api/client.js";
+import { useLocalized, useDateLocale } from "../hooks/useLocalized.js";
 import PillarsWheel from "../components/PillarsWheel.jsx";
 import MarqueeBanner from "../components/MarqueeBanner.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
@@ -19,6 +20,8 @@ import { Loader } from "../components/Loader.jsx";
 export default function Home() {
   const { t, i18n } = useTranslation();
   const isJa = i18n.language === "ja";
+  const loc = useLocalized();
+  const dateLoc = useDateLocale();
   const [pillars, setPillars] = useState(null);
   const [labs, setLabs] = useState(null);
   const [news, setNews] = useState(null);
@@ -198,9 +201,9 @@ export default function Home() {
                 <MapPin className="shrink-0 text-ochre mt-1" size={20} />
                 <div>
                   <div className="font-display text-xl mb-1.5">
-                    {lab ? lab.title : <span className="opacity-0">placeholder</span>}
+                    {lab ? loc(lab, "title") : <span className="opacity-0">placeholder</span>}
                   </div>
-                  <p className="text-paper/65 text-sm leading-relaxed">{lab?.description}</p>
+                  <p className="text-paper/65 text-sm leading-relaxed">{lab ? loc(lab, "description") : ""}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -235,7 +238,7 @@ export default function Home() {
         </div>
         <Reveal delay={0.15} className="mt-10 flex flex-wrap items-center gap-3 sm:gap-4 border border-ochre/30 bg-ochre/5 px-6 py-5">
           <div className="font-mono text-xs uppercase tracking-wider text-ochre">{t("impact.featuredPartner")}</div>
-          <div className="font-display text-lg text-bay">Indian Institute of Technology Kharagpur (IIT Kharagpur), India</div>
+          <div className="font-display text-lg text-bay">{t("iitKharagpur")}</div>
         </Reveal>
       </section>
 
@@ -258,8 +261,8 @@ export default function Home() {
               <div className="space-y-4">
                 {(news || Array.from({ length: 3 })).map((n, i) => (
                   <div key={n?.title || i} className="border-b border-bay/10 pb-4">
-                    <div className="font-display text-lg text-bay">{n?.title}</div>
-                    <div className="text-sm text-ink/60 mt-1">{n?.description}</div>
+                    <div className="font-display text-lg text-bay">{n ? loc(n, "title") : ""}</div>
+                    <div className="text-sm text-ink/60 mt-1">{n ? loc(n, "description") : ""}</div>
                   </div>
                 ))}
               </div>
@@ -275,12 +278,12 @@ export default function Home() {
                 {(events || Array.from({ length: 3 })).map((e, i) => (
                   <div key={e?.title || i} className="border-b border-bay/10 pb-4 flex justify-between gap-4">
                     <div>
-                      <div className="font-display text-lg text-bay">{e?.title}</div>
-                      <div className="text-sm text-ink/60 mt-1">{e?.subtitle}</div>
+                      <div className="font-display text-lg text-bay">{e ? loc(e, "title") : ""}</div>
+                      <div className="text-sm text-ink/60 mt-1">{e ? loc(e, "subtitle") : ""}</div>
                     </div>
                     {e?.date && (
                       <div className="font-mono text-xs text-vermillion whitespace-nowrap shrink-0">
-                        {new Date(e.date).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                        {new Date(e.date).toLocaleDateString(dateLoc, { month: "short", day: "numeric" })}
                       </div>
                     )}
                   </div>

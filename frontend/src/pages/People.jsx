@@ -9,6 +9,7 @@ import meetTheTeamSvg from "../assets/illustrations/meet-the-team.svg";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 const CATEGORY_ORDER = [
   "Principal Investigator",

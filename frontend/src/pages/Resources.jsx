@@ -6,6 +6,7 @@ import SectionHeading from "../components/SectionHeading.jsx";
 import { StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 const ICONS = {
   Datasets: Database,
@@ -16,6 +17,7 @@ const ICONS = {
 
 export default function Resources() {
   const { t } = useTranslation();
+  const loc = useLocalized();
   const [items, setItems] = useState(null);
 
   useEffect(() => {
@@ -46,8 +48,8 @@ export default function Resources() {
                       <Icon size={20} />
                     </div>
                     <div>
-                      <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5">{r.category}</div>
-                      <div className="font-display text-lg text-bay leading-snug">{r.title}</div>
+                      <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5">{loc(r, "category") || r.category}</div>
+                      <div className="font-display text-lg text-bay leading-snug">{loc(r, "title")}</div>
                       {r.link && (
                         <a
                           href={r.link}

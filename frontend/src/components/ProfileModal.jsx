@@ -2,12 +2,14 @@ import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 const initialsOf = (name) => name.split(" ").map((w) => w[0]).slice(0, 2).join("");
 
 /** Full profile (photo, bio, quote) for one person; arrows / ← → keys step through everyone who has a profile. */
 export default function ProfileModal({ people, index, onClose, onNavigate }) {
   const { t } = useTranslation();
+  const loc = useLocalized();
   const closeRef = useRef(null);
   const person = index !== null ? people[index] : null;
   const open = Boolean(person);
@@ -73,18 +75,18 @@ export default function ProfileModal({ people, index, onClose, onNavigate }) {
                 {t(`pages.people.categories.${person.category}`, { defaultValue: person.category })}
               </div>
               <h3 id="profile-name" className="font-display text-3xl sm:text-4xl text-bay leading-tight pr-8">
-                {person.title}
+                {loc(person, "title")}
               </h3>
-              {person.subtitle && <div className="mt-1 text-sm text-ink/60">{person.subtitle}</div>}
-              {person.description && (
-                <p className="mt-5 text-ink/75 leading-relaxed text-[0.95rem]">{person.description}</p>
+              {(person.subtitle || person.subtitle_ja) && <div className="mt-1 text-sm text-ink/60">{loc(person, "subtitle")}</div>}
+              {(person.description || person.description_ja) && (
+                <p className="mt-5 text-ink/75 leading-relaxed text-[0.95rem]">{loc(person, "description")}</p>
               )}
-              {person.quote && (
+              {(person.quote || person.quote_ja) && (
                 <blockquote className="mt-6 border-l-2 border-vermillion pl-4">
                   <div className="font-mono text-[0.65rem] uppercase tracking-wider text-vermillion mb-1.5">
                     {t("pages.people.quoteLabel")}
                   </div>
-                  <p className="font-display italic text-lg text-bay leading-snug">“{person.quote}”</p>
+                  <p className="font-display italic text-lg text-bay leading-snug">&ldquo;{loc(person, "quote")}&rdquo;</p>
                 </blockquote>
               )}
               {person.link && (

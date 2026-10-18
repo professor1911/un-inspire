@@ -19,40 +19,46 @@ const TYPE_CONFIG = {
     label: "People",
     categories: ["Principal Investigator", "Project Member", "India Team", "Postdoctoral Researcher", "Graduate Student", "Support Staff", "Advisor"],
     fields: ["title", "subtitle", "category", "description", "quote", "image", "link", "linkLabel", "order"],
+    jaFields: ["title_ja", "subtitle_ja", "description_ja", "quote_ja"],
   },
   publication: {
     label: "Publications",
     categories: ["Journal Article", "Book", "Book Chapter", "Conference Paper", "Policy Brief", "Technical Report"],
     fields: ["title", "subtitle", "category", "date", "link", "order"],
+    jaFields: ["title_ja", "subtitle_ja"],
   },
   event: {
     label: "Events",
     categories: ["Workshop", "Seminar", "Conference", "Training Programme"],
     fields: ["title", "subtitle", "category", "date", "order"],
+    jaFields: ["title_ja", "subtitle_ja"],
   },
   news: {
     label: "News & Media",
     categories: ["News", "Press Release", "Media Coverage"],
     fields: ["title", "description", "category", "date", "link", "order"],
+    jaFields: ["title_ja", "description_ja"],
   },
   resource: {
     label: "Resources",
     categories: ["Datasets", "Reports", "Educational Materials", "Presentations"],
     fields: ["title", "category", "link", "order"],
+    jaFields: ["title_ja"],
   },
   galleryPhoto: {
     label: "Gallery Photos",
     categories: ["Nature & Seasons", "Campus", "City & Heritage", "Festivals", "Coast & Waterways"],
     fields: ["title", "subtitle", "category", "image", "order"],
+    jaFields: ["title_ja"],
   },
-  livingLab: { label: "Living Labs", categories: [], fields: ["title", "description", "order"] },
-  educationComponent: { label: "Education programs", categories: [], fields: ["title", "description", "order"] },
-  researchTheme: { label: "Research themes", categories: [], fields: ["title", "order"] },
-  partnerCategory: { label: "Partner categories", categories: [], fields: ["title", "order"] },
+  livingLab: { label: "Living Labs", categories: [], fields: ["title", "description", "order"], jaFields: ["title_ja", "description_ja"] },
+  educationComponent: { label: "Education programs", categories: [], fields: ["title", "description", "order"], jaFields: ["title_ja", "description_ja"] },
+  researchTheme: { label: "Research themes", categories: [], fields: ["title", "order"], jaFields: ["title_ja"] },
+  partnerCategory: { label: "Partner categories", categories: [], fields: ["title", "order"], jaFields: ["title_ja"] },
 };
 
 const SESSION_KEY = "ut-inspire-admin-token";
-const emptyForm = { title: "", subtitle: "", category: "", description: "", quote: "", date: "", link: "", linkLabel: "", order: 0, image: "" };
+const emptyForm = { title: "", subtitle: "", category: "", description: "", quote: "", date: "", link: "", linkLabel: "", order: 0, image: "", title_ja: "", subtitle_ja: "", description_ja: "", quote_ja: "", category_ja: "" };
 const toForm = (it) => ({
   title: it.title || "",
   subtitle: it.subtitle || "",
@@ -64,6 +70,11 @@ const toForm = (it) => ({
   linkLabel: it.linkLabel || "",
   order: it.order ?? 0,
   image: it.image || "",
+  title_ja: it.title_ja || "",
+  subtitle_ja: it.subtitle_ja || "",
+  description_ja: it.description_ja || "",
+  quote_ja: it.quote_ja || "",
+  category_ja: it.category_ja || "",
 });
 
 const inputCls = "w-full border border-bay/25 bg-white px-4 py-2.5 focus:border-vermillion outline-none";
@@ -168,6 +179,9 @@ export default function Admin() {
       if (f === "order") payload.order = Number(form.order) || 0;
       else if (f === "date") payload.date = form.date || null;
       else payload[f] = form[f];
+    });
+    (cfg.jaFields || []).forEach((f) => {
+      payload[f] = form[f] || "";
     });
     try {
       if (editingId) {
@@ -325,6 +339,34 @@ export default function Admin() {
                 <input id="f-order" type="number" value={form.order} onChange={set("order")} className={inputCls} />
               </Field>
             )}
+          </div>
+        )}
+
+        {(cfg.jaFields || []).length > 0 && (
+          <div className="border-t border-bay/15 pt-4 mt-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-vermillion mb-3">🇯🇵 Japanese translations (optional)</div>
+            <div className="space-y-4">
+              {cfg.jaFields.includes("title_ja") && (
+                <Field id="f-title-ja" label="タイトル (Japanese title)">
+                  <input id="f-title-ja" value={form.title_ja} onChange={set("title_ja")} placeholder="日本語のタイトル" className={inputCls} />
+                </Field>
+              )}
+              {cfg.jaFields.includes("subtitle_ja") && (
+                <Field id="f-subtitle-ja" label="サブタイトル (Japanese subtitle)">
+                  <input id="f-subtitle-ja" value={form.subtitle_ja} onChange={set("subtitle_ja")} placeholder="日本語のサブタイトル" className={inputCls} />
+                </Field>
+              )}
+              {cfg.jaFields.includes("description_ja") && (
+                <Field id="f-description-ja" label="説明 (Japanese description)">
+                  <textarea id="f-description-ja" rows={3} value={form.description_ja} onChange={set("description_ja")} placeholder="日本語の説明" className={`${inputCls} resize-y`} />
+                </Field>
+              )}
+              {cfg.jaFields.includes("quote_ja") && (
+                <Field id="f-quote-ja" label="ひとこと (Japanese quote)">
+                  <textarea id="f-quote-ja" rows={2} maxLength={600} value={form.quote_ja} onChange={set("quote_ja")} placeholder="日本語のひとこと" className={`${inputCls} resize-none`} />
+                </Field>
+              )}
+            </div>
           </div>
         )}
 

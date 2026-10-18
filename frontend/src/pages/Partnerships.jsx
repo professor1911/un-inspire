@@ -8,9 +8,11 @@ import handshakeSvg from "../assets/illustrations/handshake-deal.svg";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized } from "../hooks/useLocalized.js";
 
 export default function Partnerships() {
   const { t } = useTranslation();
+  const loc = useLocalized();
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function Partnerships() {
           <Reveal className="flex-1 border border-ochre/30 bg-ochre/5 px-6 sm:px-8 py-6 sm:py-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="font-mono text-xs uppercase tracking-wider text-ochre shrink-0">{t("impact.featuredPartner")}</div>
             <div className="font-display text-xl sm:text-2xl text-bay">
-              Indian Institute of Technology Kharagpur (IIT Kharagpur), India
+              {t("iitKharagpur")}
             </div>
           </Reveal>
         </div>
@@ -49,7 +51,7 @@ export default function Partnerships() {
               {categories.map((c, i) => (
                 <StaggerItem key={c.title} className="border border-bay/15 p-6">
                   <div className="font-mono text-xs text-bay/40 mb-2">{String(i + 1).padStart(2, "0")}</div>
-                  <div className="font-display text-lg text-bay">{c.title}</div>
+                  <div className="font-display text-lg text-bay">{loc(c, "title")}</div>
                 </StaggerItem>
               ))}
             </StaggerGroup>

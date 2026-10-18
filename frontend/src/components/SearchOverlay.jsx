@@ -4,16 +4,15 @@ import { useTranslation } from "react-i18next";
 import { Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Extra searchable terms beyond the 12 nav pages, so "find anything" is genuinely true.
-const EXTRA_TERMS = [
-  { label: "ReACT flagship program", to: "/research", keywords: "react agro-coastal flagship" },
-  { label: "IIT Kharagpur partnership", to: "/partnerships", keywords: "iit kharagpur india featured partner" },
-  { label: "5 Strategic Pillars", to: "/about", keywords: "pillars framework wheel" },
-  { label: "Sustainability Integration Studio", to: "/education", keywords: "sis studio curriculum" },
-  { label: "Contact form", to: "/contact", keywords: "email reach us message" },
-  { label: "GRASS Research Centre", to: "/about", keywords: "grass centre gofuku" },
-  { label: "Sustainable Development Goals", to: "/sdgs", keywords: "sdg sdgs goals people planet prosperity peace partnership" },
-  { label: "Photo Gallery", to: "/gallery", keywords: "photos images gallery pictures" },
+const EXTRA_TERM_DEFS = [
+  { labelKey: "searchExtras.react", to: "/research", keywords: "react agro-coastal flagship 旗艦 研究" },
+  { labelKey: "searchExtras.iitKharagpur", to: "/partnerships", keywords: "iit kharagpur india featured partner パートナー インド" },
+  { labelKey: "searchExtras.pillars", to: "/about", keywords: "pillars framework wheel 柱 戦略" },
+  { labelKey: "searchExtras.sis", to: "/education", keywords: "sis studio curriculum スタジオ カリキュラム" },
+  { labelKey: "searchExtras.contactForm", to: "/contact", keywords: "email reach us message メール 問い合わせ" },
+  { labelKey: "searchExtras.grass", to: "/about", keywords: "grass centre gofuku 五福 センター" },
+  { labelKey: "searchExtras.sdgs", to: "/sdgs", keywords: "sdg sdgs goals people planet prosperity peace partnership 持続可能 目標" },
+  { labelKey: "searchExtras.gallery", to: "/gallery", keywords: "photos images gallery pictures 写真 ギャラリー" },
 ];
 
 export default function SearchOverlay({ open, onClose }) {
@@ -39,7 +38,8 @@ export default function SearchOverlay({ open, onClose }) {
       { label: t("nav.gallery"), to: "/gallery" },
       { label: t("nav.contact"), to: "/contact" },
     ];
-    return [...navItems, ...EXTRA_TERMS];
+    const extras = EXTRA_TERM_DEFS.map((d) => ({ label: t(d.labelKey), to: d.to, keywords: d.keywords }));
+    return [...navItems, ...extras];
   }, [t]);
 
   const results = query.trim()
@@ -98,7 +98,7 @@ export default function SearchOverlay({ open, onClose }) {
                 placeholder={t("search.placeholder")}
                 className="flex-1 bg-transparent outline-none font-body text-base text-ink placeholder:text-ink/40"
               />
-              <button onClick={onClose} aria-label="Close search" className="text-bay/50 hover:text-vermillion">
+              <button onClick={onClose} aria-label={t("common.closeSearch")} className="text-bay/50 hover:text-vermillion">
                 <X size={18} />
               </button>
             </div>

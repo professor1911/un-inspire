@@ -6,11 +6,14 @@ import SectionHeading from "../components/SectionHeading.jsx";
 import { StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized, useDateLocale } from "../hooks/useLocalized.js";
 
 export default function Publications() {
   const { t } = useTranslation();
+  const loc = useLocalized();
+  const dateLoc = useDateLocale();
   const [items, setItems] = useState(null);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState("__all__");
 
   useEffect(() => {
     fetchItems("publication").then((r) => setItems(r.items));
@@ -18,10 +21,10 @@ export default function Publications() {
 
   const categories = useMemo(() => {
     if (!items) return [];
-    return ["All", ...new Set(items.map((i) => i.category))];
+    return [...new Set(items.map((i) => i.category))];
   }, [items]);
 
-  const visible = items ? (filter === "All" ? items : items.filter((i) => i.category === filter)) : [];
+  const visible = items ? (filter === "__all__" ? items : items.filter((i) => i.category === filter)) : [];
 
   return (
     <div>
@@ -39,6 +42,14 @@ export default function Publications() {
         {items && (
           <>
             <div className="mt-8 flex flex-wrap gap-2">
+              <button
+                onClick={() => setFilter("__all__")}
+                className={`px-4 py-1.5 rounded-full text-xs font-mono border transition-colors ${
+                  filter === "__all__" ? "bg-bay text-paper border-bay" : "border-bay/25 text-bay/70 hover:border-bay"
+                }`}
+              >
+                {t("common.all")}
+              </button>
               {categories.map((c) => (
                 <button
                   key={c}
@@ -60,9 +71,9 @@ export default function Publications() {
                   {visible.map((pub) => (
                     <StaggerItem key={pub.title} className="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                       <div>
-                        <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5">{pub.category}</div>
-                        <div className="font-display text-lg sm:text-xl text-bay leading-snug">{pub.title}</div>
-                        {pub.subtitle && <div className="text-sm text-ink/60 mt-1">{pub.subtitle}</div>}
+                        <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5">{loc(pub, "category") || pub.category}</div>
+                        <div className="font-display text-lg sm:text-xl text-bay leading-snug">{loc(pub, "title")}</div>
+                        {(pub.subtitle || pub.subtitle_ja) && <div className="text-sm text-ink/60 mt-1">{loc(pub, "subtitle")}</div>}
                         {pub.link && (
                           <a
                             href={pub.link}
@@ -76,7 +87,7 @@ export default function Publications() {
                       </div>
                       {pub.date && (
                         <div className="font-mono text-xs text-bay/50 whitespace-nowrap shrink-0 sm:pt-1">
-                          {new Date(pub.date).toLocaleDateString(undefined, { year: "numeric", month: "short" })}
+                          {new Date(pub.date).toLocaleDateString(dateLoc, { year: "numeric", month: "short" })}
                         </div>
                       )}
                     </StaggerItem>

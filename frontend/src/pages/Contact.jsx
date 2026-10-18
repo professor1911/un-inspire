@@ -7,11 +7,17 @@ import PageIllustration from "../components/PageIllustration.jsx";
 import groupChatSvg from "../assets/illustrations/group-chat.svg";
 import { submitContact } from "../api/client.js";
 
-const initialForm = { name: "", email: "", subject: "General Inquiry", message: "" };
+const SUBJECT_KEYS = [
+  "generalInquiry",
+  "researchCollaboration",
+  "educationPrograms",
+  "mediaPress",
+  "livingLabPartnership",
+];
 
 export default function Contact() {
   const { t } = useTranslation();
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState({ name: "", email: "", subject: t("contactSubjects.generalInquiry"), message: "" });
   const [status, setStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -26,12 +32,11 @@ export default function Contact() {
     try {
       await submitContact(form);
       setStatus("sent");
-      setForm(initialForm);
+      setForm({ name: "", email: "", subject: t("contactSubjects.generalInquiry"), message: "" });
     } catch (err) {
       setStatus("error");
       setErrorMsg(
-        err?.response?.data?.error ||
-          "Couldn't reach the server. Make sure the backend is running (see README), or try again shortly."
+        err?.response?.data?.error || t("contactErrors.serverDown")
       );
     }
   }
@@ -115,11 +120,9 @@ export default function Contact() {
                 onChange={update("subject")}
                 className="w-full border border-bay/25 bg-white/50 px-4 py-3 focus:border-vermillion outline-none transition-colors"
               >
-                <option>General Inquiry</option>
-                <option>Research Collaboration</option>
-                <option>Education & Programs</option>
-                <option>Media & Press</option>
-                <option>Living Lab Partnership</option>
+                {SUBJECT_KEYS.map((key) => (
+                  <option key={key} value={t(`contactSubjects.${key}`)}>{t(`contactSubjects.${key}`)}</option>
+                ))}
               </select>
             </div>
             <div>

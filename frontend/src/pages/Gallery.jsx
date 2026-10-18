@@ -34,7 +34,7 @@ export default function Gallery() {
     () => (photos ? photos.filter((p) => filter === "all" || p.category === filter) : []),
     [photos, filter]
   );
-  const caption = (p) => (ja && p.subtitle ? p.subtitle : p.title);
+  const caption = (p) => (ja && (p.subtitle || p.title_ja) ? (p.title_ja || p.subtitle) : p.title);
   const catLabel = (c) => t(`pages.gallery.categories.${c}`, { defaultValue: c });
 
   const step = useCallback(

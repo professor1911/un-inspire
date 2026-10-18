@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const SIZE = 440;
 const CX = SIZE / 2;
@@ -31,6 +32,7 @@ function segmentPath(startDeg, endDeg) {
 const PALETTE = ["#17394D", "#5C7A5E", "#C98A2B", "#BF4E3A", "#3F5942"];
 
 export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", centerLine2 = "Pillars" }) {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
   const n = pillars.length || 5;
   const step = 360 / n;
@@ -42,7 +44,7 @@ export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", cen
           viewBox={`0 0 ${SIZE} ${SIZE}`}
           className="w-full h-auto"
           role="img"
-          aria-label="The five UT-INSPIRE strategic pillars, arranged as a wheel"
+          aria-label={t("common.pillarsAriaLabel")}
         >
           {/* faint contour rings behind the wheel, echoing the site's topographic motif */}
           {[R_OUTER + 26, R_OUTER + 52].map((r) => (
@@ -121,7 +123,7 @@ export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", cen
             transition={{ duration: 0.3 }}
           >
             <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-2">
-              Pillar {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
+              {t("common.pillarLabel", { current: String(active + 1).padStart(2, "0"), total: String(n).padStart(2, "0") })}
             </div>
             <h3 className="font-display text-3xl md:text-4xl text-bay mb-4">
               {pillars[active]?.title}

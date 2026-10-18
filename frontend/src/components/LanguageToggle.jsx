@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 export default function LanguageToggle({ className = "" }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const current = i18n.language;
 
   function setLang(lng) {
@@ -12,7 +12,7 @@ export default function LanguageToggle({ className = "" }) {
     <div
       className={`inline-flex items-center border border-bay/25 rounded-full p-0.5 font-mono text-[0.68rem] uppercase tracking-wider ${className}`}
       role="group"
-      aria-label="Language"
+      aria-label={t("common.language")}
     >
       {[
         { code: "en", label: "EN" },

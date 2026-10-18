@@ -7,9 +7,12 @@ import TiltCard from "../components/TiltCard.jsx";
 import { StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
+import { useLocalized, useDateLocale } from "../hooks/useLocalized.js";
 
 export default function NewsMedia() {
   const { t } = useTranslation();
+  const loc = useLocalized();
+  const dateLoc = useDateLocale();
   const [news, setNews] = useState(null);
 
   useEffect(() => {
@@ -36,11 +39,11 @@ export default function NewsMedia() {
                 <StaggerItem key={n.title}>
                   <TiltCard className="border border-bay/15 p-6 bg-white/40 flex flex-col h-full">
                     <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-3">
-                      {n.category}
-                      {n.date && ` · ${new Date(n.date).toLocaleDateString(undefined, { month: "short", year: "numeric" })}`}
+                      {loc(n, "category") || n.category}
+                      {n.date && ` · ${new Date(n.date).toLocaleDateString(dateLoc, { month: "short", year: "numeric" })}`}
                     </div>
-                    <div className="font-display text-xl text-bay leading-snug mb-2">{n.title}</div>
-                    <p className="text-sm text-ink/65 leading-relaxed">{n.description}</p>
+                    <div className="font-display text-xl text-bay leading-snug mb-2">{loc(n, "title")}</div>
+                    <p className="text-sm text-ink/65 leading-relaxed">{loc(n, "description")}</p>
                     {n.link && (
                       <a
                         href={n.link}
