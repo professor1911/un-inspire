@@ -1,6 +1,6 @@
 // Media manifest. Captions, categories and video metadata live here.
 // The image FILES are plain files in frontend/public/media (see MEDIA_CHECKLIST.md at the repo root):
-//   natu1-p01.jpg … natu1-p15.jpg, natu2-p01.jpg … natu2-p20.jpg, students-p01.jpg … students-p07.jpg
+//   natu1-p01.jpeg … natu1-p15.jpeg, natu2-p01.jpeg … natu2-p20.jpeg, students-p01.jpeg … students-p07.jpeg
 export const MEDIA_BASE = "/media";
 
 export const VIDEOS = [
@@ -564,5 +564,5 @@ export const STRIPS = {
   ]
 };
 
-const key = (img) => img.split("/").pop().replace(/\.jpg$/, "");
+const key = (img) => img.split("/").pop().replace(/\.jpe?g$/, "");
 export const photoById = (id) => GALLERY_ITEMS.find((i) => key(i.image) === id);

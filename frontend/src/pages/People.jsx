@@ -55,11 +55,7 @@ export default function People() {
       />
 
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 sm:py-20">
-        <PageIllustration
-          src={meetTheTeamSvg}
-          alt="Illustration of a team meeting and introducing themselves"
-          className="max-w-[240px] mb-10 sm:mb-12"
-        />
+      
         {people === null && <Loader label={t("common.loading")} />}
         {people?.length === 0 && <EmptyState label={t("common.empty")} />}
 

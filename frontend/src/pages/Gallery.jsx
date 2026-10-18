@@ -3,11 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import PageHero from "../components/PageHero.jsx";
-import VideoCard from "../components/VideoCard.jsx";
 import { StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
 import { Loader, EmptyState } from "../components/Loader.jsx";
 import { fetchItems } from "../api/client.js";
-import { VIDEOS } from "../data/media.js";
 
 const pill = (active) =>
   `px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wide border transition-colors ${
@@ -18,7 +16,6 @@ export default function Gallery() {
   const { t, i18n } = useTranslation();
   const ja = i18n.language === "ja";
   const [photos, setPhotos] = useState(null);
-  const [tab, setTab] = useState("photos");
   const [filter, setFilter] = useState("all");
   const [lightbox, setLightbox] = useState(null); // index into `visible`
 
@@ -64,18 +61,7 @@ export default function Gallery() {
       />
 
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 sm:py-20">
-        <div className="flex flex-wrap gap-2 mb-4">
-          <button onClick={() => setTab("photos")} aria-pressed={tab === "photos"} className={pill(tab === "photos")}>
-            {t("pages.gallery.tabPhotos")}
-          </button>
-          <button onClick={() => setTab("videos")} aria-pressed={tab === "videos"} className={pill(tab === "videos")}>
-            {t("pages.gallery.tabVideos")}
-          </button>
-        </div>
-
-        {tab === "photos" && (
-          <>
-            {categories.length > 1 && (
+        {categories.length > 1 && (
               <div className="flex flex-wrap gap-2 mb-10 pt-4 border-t border-bay/10">
                 <button
                   onClick={() => { setFilter("all"); setLightbox(null); }}
@@ -118,21 +104,6 @@ export default function Gallery() {
                 ))}
               </StaggerGroup>
             )}
-          </>
-        )}
-
-        {tab === "videos" && (
-          <>
-            <p className="text-ink/65 max-w-xl mb-10 pt-4 border-t border-bay/10">{t("pages.gallery.videosIntro")}</p>
-            <StaggerGroup className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-              {VIDEOS.map((v) => (
-                <StaggerItem key={v.id}>
-                  <VideoCard video={v} />
-                </StaggerItem>
-              ))}
-            </StaggerGroup>
-          </>
-        )}
       </section>
 
       <AnimatePresence>
