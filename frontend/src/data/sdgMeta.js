@@ -1,0 +1,41 @@
+import {
+  HandCoins,
+  Wheat,
+  HeartPulse,
+  GraduationCap,
+  Users,
+  Droplet,
+  Zap,
+  Briefcase,
+  Factory,
+  Scale,
+  Building2,
+  Recycle,
+  Thermometer,
+  Fish,
+  Trees,
+  Landmark,
+  Handshake,
+} from "lucide-react";
+
+// Colors follow the widely-used official UN SDG palette (colors/data only - no
+// reproduction of the UN's icon artwork itself, which is separately licensed).
+export const SDG_META = [
+  { number: 1, color: "#E5243B", icon: HandCoins, category: "people" },
+  { number: 2, color: "#DDA63A", icon: Wheat, category: "people" },
+  { number: 3, color: "#4C9F38", icon: HeartPulse, category: "people" },
+  { number: 4, color: "#C5192D", icon: GraduationCap, category: "people" },
+  { number: 5, color: "#FF3A21", icon: Users, category: "people" },
+  { number: 6, color: "#26BDE2", icon: Droplet, category: "planet" },
+  { number: 7, color: "#FCC30B", icon: Zap, category: "prosperity" },
+  { number: 8, color: "#A21942", icon: Briefcase, category: "prosperity" },
+  { number: 9, color: "#FD6925", icon: Factory, category: "prosperity" },
+  { number: 10, color: "#DD1367", icon: Scale, category: "prosperity" },
+  { number: 11, color: "#FD9D24", icon: Building2, category: "prosperity" },
+  { number: 12, color: "#BF8B2E", icon: Recycle, category: "planet" },
+  { number: 13, color: "#3F7E44", icon: Thermometer, category: "planet" },
+  { number: 14, color: "#0A97D9", icon: Fish, category: "planet" },
+  { number: 15, color: "#56C02B", icon: Trees, category: "planet" },
+  { number: 16, color: "#00689D", icon: Landmark, category: "peace" },
+  { number: 17, color: "#19486A", icon: Handshake, category: "partnership" },
+];
