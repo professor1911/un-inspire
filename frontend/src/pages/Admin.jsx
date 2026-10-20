@@ -9,6 +9,7 @@ import {
   deleteItemAdmin,
 } from "../api/client.js";
 import ImageUploadField from "../components/ImageUploadField.jsx";
+import BulkGalleryUpload from "../components/BulkGalleryUpload.jsx";
 
 /**
  * One config per content type: which fields its form shows (and therefore saves).
@@ -390,6 +391,10 @@ export default function Admin() {
         </button>
         {saveMsg && <p className="text-sm font-mono text-terrace" role="status">{saveMsg}</p>}
       </form>
+
+      {type === "galleryPhoto" && (
+        <BulkGalleryUpload token={token} categories={cfg.categories} onDone={refreshList} />
+      )}
 
       <div>
         <div className="font-mono text-xs uppercase tracking-wider text-bay/50 mb-4">
