@@ -50,17 +50,20 @@ export default function Publications() {
               >
                 {t("common.all")}
               </button>
-              {categories.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setFilter(c)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-mono border transition-colors ${
-                    filter === c ? "bg-bay text-paper border-bay" : "border-bay/25 text-bay/70 hover:border-bay"
-                  }`}
-                >
-                  {c}
-                </button>
-              ))}
+              {categories.map((c) => {
+                const match = items.find((i) => i.category === c);
+                return (
+                  <button
+                    key={c}
+                    onClick={() => setFilter(c)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-mono border transition-colors ${
+                      filter === c ? "bg-bay text-paper border-bay" : "border-bay/25 text-bay/70 hover:border-bay"
+                    }`}
+                  >
+                    {(match && loc(match, "category")) || c}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="mt-8 sm:mt-10">

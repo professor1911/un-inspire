@@ -48,7 +48,7 @@ const TYPE_CONFIG = {
   },
   galleryPhoto: {
     label: "Gallery Photos",
-    categories: ["Nature & Seasons", "Campus", "City & Heritage", "Festivals", "Coast & Waterways"],
+    categories: ["Nature & Seasons", "Campus", "City & Heritage", "Festivals", "Coast & Waterways", "Field Research", "Living Labs", "Events", "Partnerships"],
     fields: ["title", "subtitle", "category", "image", "order"],
     jaFields: ["title_ja"],
   },
