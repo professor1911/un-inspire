@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import LanguageToggle from "./LanguageToggle.jsx";
 import SearchOverlay from "./SearchOverlay.jsx";
+import utInspireLogo from "../assets/ut-inspire-logo.png";
 
 // Flat list kept for the footer + mobile drawer + search index.
 export const NAV_ITEMS = [
@@ -21,6 +22,7 @@ export const NAV_ITEMS = [
   { to: "/news-media", key: "news" },
   { to: "/resources", key: "resources" },
   { to: "/gallery", key: "gallery" },
+  { to: "/blog", key: "blog" },
   { to: "/contact", key: "contact" },
 ];
 
@@ -29,7 +31,7 @@ export const NAV_ITEMS = [
 const NAV_GROUPS = [
   { groupKey: "about", items: [{ to: "/about", key: "about" }, { to: "/people", key: "people" }, { to: "/partnerships", key: "partnerships" }, { to: "/sdgs", key: "sdgs" }] },
   { groupKey: "research", items: [{ to: "/research", key: "research" }, { to: "/education", key: "education" }, { to: "/living-labs", key: "livingLabs" }] },
-  { groupKey: "insights", items: [{ to: "/publications", key: "publications" }, { to: "/events", key: "events" }, { to: "/news-media", key: "news" }, { to: "/resources", key: "resources" }, { to: "/gallery", key: "gallery" }] },
+  { groupKey: "insights", items: [{ to: "/publications", key: "publications" }, { to: "/events", key: "events" }, { to: "/news-media", key: "news" }, { to: "/resources", key: "resources" }, { to: "/gallery", key: "gallery" }, { to: "/blog", key: "blog" }] },
 ];
 
 function NavDropdown({ group }) {
@@ -132,13 +134,16 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto max-w-7xl px-5 md:px-8 flex items-center justify-between h-[68px] sm:h-[72px]">
-          <NavLink to="/" className="flex flex-col leading-none group shrink-0">
-            <span className="font-display text-xl sm:text-2xl tracking-tight text-bay font-semibold">
-              UT<span className="text-vermillion">·</span>INSPIRE
-            </span>
-            <span className="font-bodyJp text-[0.6rem] sm:text-[0.65rem] tracking-[0.15em] text-bay/45 mt-1">
-              富山大学 &nbsp;University of Toyama
-            </span>
+          <NavLink to="/" className="flex items-center gap-3 group shrink-0">
+            <img src={utInspireLogo} alt="UT-INSPIRE" className="h-10 sm:h-12 w-auto" />
+            <div className="flex flex-col leading-none">
+              <span className="font-display text-xl sm:text-2xl tracking-tight text-bay font-semibold">
+                UT<span className="text-vermillion">·</span>INSPIRE
+              </span>
+              <span className="font-bodyJp text-[0.6rem] sm:text-[0.65rem] tracking-[0.15em] text-bay/45 mt-1">
+                富山大学 &nbsp;University of Toyama
+              </span>
+            </div>
           </NavLink>
 
           {/* Desktop nav: grouped dropdowns + Contact + Search, on the right */}

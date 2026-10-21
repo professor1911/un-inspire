@@ -29,6 +29,7 @@ const itemSchema = new mongoose.Schema(
         "news",
         "resource",
         "galleryPhoto",
+        "blogPost",
       ],
       index: true,
     },

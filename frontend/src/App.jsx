@@ -21,6 +21,7 @@ import NewsMedia from "./pages/NewsMedia.jsx";
 import Resources from "./pages/Resources.jsx";
 import SDGs from "./pages/SDGs.jsx";
 import Gallery from "./pages/Gallery.jsx";
+import Blog from "./pages/Blog.jsx";
 import Contact from "./pages/Contact.jsx";
 import Admin from "./pages/Admin.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -64,6 +65,7 @@ function AnimatedRoutes() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/sdgs" element={<SDGs />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />

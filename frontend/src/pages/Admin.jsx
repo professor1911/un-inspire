@@ -56,6 +56,12 @@ const TYPE_CONFIG = {
   educationComponent: { label: "Education programs", categories: [], fields: ["title", "description", "order"], jaFields: ["title_ja", "description_ja"] },
   researchTheme: { label: "Research themes", categories: [], fields: ["title", "order"], jaFields: ["title_ja"] },
   partnerCategory: { label: "Partner categories", categories: [], fields: ["title", "order"], jaFields: ["title_ja"] },
+  blogPost: {
+    label: "Student Blog",
+    categories: ["Field Report", "Research Insight", "Student Life", "Reflection"],
+    fields: ["title", "subtitle", "category", "description", "date", "image", "order"],
+    jaFields: ["title_ja", "subtitle_ja", "description_ja"],
+  },
 };
 
 const SESSION_KEY = "ut-inspire-admin-token";

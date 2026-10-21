@@ -14,11 +14,12 @@ export const en = {
       resources: "Resources",
       sdgs: "SDGs",
       gallery: "Gallery",
+      blog: "Student Blog",
       contact: "Contact",
     },
     topbar: {
       institution: "University of Toyama",
-      center: "GRASS Research Centre",
+      center: "GRASS",
     },
     navGroups: {
       about: "About",
@@ -164,6 +165,7 @@ export const en = {
       grass: "GRASS Research Centre",
       sdgs: "Sustainable Development Goals",
       gallery: "Photo Gallery",
+      blog: "Student Blog",
     },
     iitKharagpur: "Indian Institute of Technology Kharagpur (IIT Kharagpur), India",
     pages: {
@@ -300,6 +302,12 @@ export const en = {
           "Partnerships": "Partnerships",
         },
       },
+      blog: {
+        eyebrow: "Student Blog",
+        title: "Voices from the field.",
+        description: "Stories, reflections, and insights from UT-INSPIRE students and researchers.",
+        empty: "No blog posts yet. Add some from the admin panel.",
+      },
     },
     sdgGoals: [
       { title: "No Poverty", description: "End poverty in all its forms everywhere." },
@@ -399,11 +407,12 @@ export const ja = {
       resources: "資料",
       sdgs: "SDGs",
       gallery: "ギャラリー",
+      blog: "学生ブログ",
       contact: "お問い合わせ",
     },
     topbar: {
       institution: "富山大学",
-      center: "GRASS研究センター",
+      center: "GRASS",
     },
     navGroups: {
       about: "私たちについて",
@@ -544,6 +553,7 @@ export const ja = {
       grass: "GRASS研究センター",
       sdgs: "持続可能な開発目標（SDGs）",
       gallery: "フォトギャラリー",
+      blog: "学生ブログ",
     },
     iitKharagpur: "インド工科大学カラグプル校（IIT Kharagpur）、インド",
     pages: {
@@ -679,6 +689,12 @@ export const ja = {
           "Events": "イベント",
           "Partnerships": "パートナーシップ",
         },
+      },
+      blog: {
+        eyebrow: "学生ブログ",
+        title: "現場からの声。",
+        description: "UT-INSPIREの学生・研究者によるストーリー、振り返り、そして新たな知見。",
+        empty: "まだブログ記事がありません。管理画面から追加してください。",
       },
     },
     sdgGoals: [

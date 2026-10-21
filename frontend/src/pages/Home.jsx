@@ -77,7 +77,7 @@ export default function Home() {
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-ochre mb-5">
               {t("hero.eyebrow")}
             </div>
-            <h1 className={`font-display text-[2.1rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl ${isJa ? "font-displayJp" : ""}`}>
+            <h1 className={`font-display text-[2.5rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-8xl max-w-4xl ${isJa ? "font-displayJp" : ""}`}>
               {t("hero.titleLine1")} {t("hero.titleLine2")}{" "}
               <span className="text-ochre">{t("hero.titleAccent")}</span> {t("hero.titleEnd")}
             </h1>
