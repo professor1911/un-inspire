@@ -11,7 +11,7 @@ export default function SectionHeading({ eyebrow, title, description, align = "l
       className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""} ${className}`}
     >
       {eyebrow && (
-        <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">{eyebrow}</div>
+        <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">{eyebrow}</div>
       )}
       <h2 className={`font-display text-3xl md:text-5xl leading-tight ${isDark ? "text-paper" : "text-bay"}`}>
         {title}

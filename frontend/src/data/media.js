@@ -20,7 +20,7 @@ export const VIDEOS = [
     "width": 524,
     "height": 450,
     "caption": "One planet, closed loops: energy, water and materials circulating",
-    "captionJa": "ひとつの地球、循環する資源：エネルギー・水・物質のめぐり"
+    "captionJa": "1つの地球、循環する資源：エネルギー、水、物質の循環"
   },
   {
     "id": "video-03",
@@ -29,7 +29,7 @@ export const VIDEOS = [
     "width": 640,
     "height": 390,
     "caption": "Five pillars, one foundation",
-    "captionJa": "5つの柱とひとつの土台"
+    "captionJa": "5つの柱、1つの共通基盤"
   },
   {
     "id": "video-04",
@@ -38,7 +38,7 @@ export const VIDEOS = [
     "width": 640,
     "height": 360,
     "caption": "Many minds, one future",
-    "captionJa": "多くの知恵、ひとつの未来"
+    "captionJa": "多様な知を結集し、一つの未来を共創する"
   },
   {
     "id": "video-05",
@@ -56,7 +56,7 @@ export const VIDEOS = [
     "width": 562,
     "height": 450,
     "caption": "Co-creation: researchers, government, industry and communities around one place",
-    "captionJa": "共創：研究者・行政・産業界・地域社会がひとつの地域を囲む"
+    "captionJa": "共創：研究者・行政・産業界・地域社会が1つの地域を囲む"
   }
 ];
 export const videoById = (id) => VIDEOS.find((v) => v.id === id);

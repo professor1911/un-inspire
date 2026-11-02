@@ -34,7 +34,7 @@ export default function PersonCard({ person, onOpen }) {
       </div>
       <div className="mt-6 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-terrace">{role}</div>
       <h3 className="mt-2 font-display font-bold text-xl text-bay leading-snug">{loc(person, "title")}</h3>
-      {(person.subtitle || person.subtitle_ja) && <p className="mt-2 text-sm text-ink/60 leading-relaxed max-w-[18rem]">{loc(person, "subtitle")}</p>}
+      {(person.subtitle || person.subtitle_ja) && <p className="mt-2 text-sm text-ink/70 leading-relaxed max-w-[18rem]">{loc(person, "subtitle")}</p>}
       {hasProfile && (
         <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-terrace group-hover:text-vermillion transition-colors">
           {t("pages.people.readProfile")} <ArrowRight size={14} />

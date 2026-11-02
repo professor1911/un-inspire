@@ -35,7 +35,7 @@ export default function SDGs() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="md:col-span-7"
           >
-            <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">{t("pages.sdgs.eyebrow")}</div>
+            <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">{t("pages.sdgs.eyebrow")}</div>
             <h1 className="font-display text-4xl md:text-5xl leading-[1.08] max-w-xl">{t("pages.sdgs.title")}</h1>
             <p className="mt-5 text-paper/70 max-w-lg leading-relaxed">{t("pages.sdgs.description")}</p>
           </motion.div>
@@ -91,7 +91,7 @@ export default function SDGs() {
                     style={{ borderTopWidth: 3, borderTopColor: g.color }}
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-xs text-bay/40">{String(g.number).padStart(2, "0")}</span>
+                      <span className="font-mono text-xs text-bay/65">{String(g.number).padStart(2, "0")}</span>
                       <div
                         className="w-9 h-9 rounded-full flex items-center justify-center text-white"
                         style={{ backgroundColor: g.color }}
@@ -100,7 +100,7 @@ export default function SDGs() {
                       </div>
                     </div>
                     <div className="font-display text-base text-bay leading-snug mb-2">{goal?.title}</div>
-                    <p className="text-xs text-ink/60 leading-relaxed">{goal?.description}</p>
+                    <p className="text-xs text-ink/70 leading-relaxed">{goal?.description}</p>
                   </motion.div>
                 </StaggerItem>
               );

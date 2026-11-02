@@ -8,33 +8,33 @@ import { GALLERY_ITEMS, STUDENT_PROFILES } from "./media.js";
 const pillars = [
   {
     title: "Research Excellence",
-    title_ja: "研究の卓越性",
+    title_ja: "卓越した研究",
     description: "Interdisciplinary inquiry into climate change, resource shortages, and demographic transitions across Toyama's agro-coastal regions.",
-    description_ja: "富山の農漁村・沿岸地域における気候変動、資源不足、人口動態の変化についての学際的研究。",
+    description_ja: "富山県の農業地域から沿岸地域に至る地域社会を対象に、気候変動、資源の制約、人口構造の変化がもたらす複合的な課題について、分野横断的な研究を推進します。",
   },
   {
     title: "Education & Capacity Building",
     title_ja: "教育と人材育成",
     description: "Project- and field-based learning that equips students to design practical sustainability solutions.",
-    description_ja: "学生が実践的なサステナビリティ・ソリューションを設計できる、プロジェクト型・実地学習。",
+    description_ja: "プロジェクト型学習やフィールドワークを通じて、学生が持続可能な社会の実現に向けた実践的な解決策を自ら構想・設計できる能力を育成します。",
   },
   {
     title: "Sustainability Living Lab",
-    title_ja: "サステナビリティ・リビングラボ",
+    title_ja: "サステイナビリティ・リビングラボ",
     description: "Real-world co-creation with researchers, policymakers, industry, and communities across five focus regions.",
-    description_ja: "研究者、政策立案者、産業界、地域社会による、5つの重点地域での実践的な共創。",
+    description_ja: "5つの重点地域をフィールドとして、研究者、政策立案者、産業界、地域社会が連携し、実践的な解決策を共創します。",
   },
   {
     title: "Global Partnerships & Networks",
-    title_ja: "国際パートナーシップとネットワーク",
+    title_ja: "国際的な連携とネットワークの構築",
     description: "Collaborations spanning universities, government, industry, and civil society - anchored by IIT Kharagpur, India.",
-    description_ja: "大学、政府、産業界、市民社会にまたがる連携。IIT Kharagpur（インド）を中心とする。",
+    description_ja: "インド工科大学カラグプル校（IIT Kharagpur）を中心に、国内外の大学、政府機関、産業界、市民社会との幅広いパートナーシップを構築し、分野や組織の垣根を越えた協働を推進します。",
   },
   {
     title: "Innovation & Impact",
-    title_ja: "イノベーションと社会実装",
+    title_ja: "イノベーションと社会的インパクト",
     description: "Publications, policy briefs, and open resources that translate research into practical, adoptable solutions.",
-    description_ja: "研究成果を実践的で導入可能なソリューションへとつなぐ、出版物、政策提言、公開資料。",
+    description_ja: "学術論文の発表、政策提言、研究成果のオープンな公開を通じて、研究によって得られた知見を、社会で実践・活用できる具体的な解決策へとつなげます。",
   },
 ].map((p, i) => ({ type: "pillar", order: i + 1, ...p }));
 
@@ -57,21 +57,21 @@ const flagshipFocus = [
 ].map((d, i) => ({ type: "flagshipFocus", order: i + 1, ...d }));
 
 const educationComponents = [
-  { title: "Sustainability Integration Studio (SIS)", title_ja: "サステナビリティ統合スタジオ（SIS）", description: "A studio-based course where students prototype solutions to real sustainability problems.", description_ja: "学生が実際のサステナビリティ課題に対するソリューションを試作する、スタジオ型授業。" },
-  { title: "Interdisciplinary Graduate Education", title_ja: "学際的大学院教育", description: "Cross-department coursework connecting agriculture, engineering, policy, and social science.", description_ja: "農学、工学、政策学、社会科学を横断する学部間連携の大学院科目。" },
-  { title: "Project-Based & Field-Based Learning", title_ja: "プロジェクト型・フィールド型学習", description: "Coursework anchored in Living Lab sites rather than the classroom alone.", description_ja: "教室だけでなく、リビングラボの現場を拠点とした学習。" },
-  { title: "Joint Supervision & Co-creation", title_ja: "共同指導と共創", description: "Students co-supervised across disciplines and, where relevant, across partner institutions.", description_ja: "分野を横断し、必要に応じて提携機関を越えた学生の共同指導。" },
-  { title: "Student & Faculty Exchange", title_ja: "学生・教員交流", description: "Mobility programs with partner universities, including IIT Kharagpur.", description_ja: "IIT Kharagpurをはじめとするパートナー大学との交流プログラム。" },
-  { title: "International Summer School", title_ja: "国際サマースクール", description: "A short intensive program bringing international students into Toyama's Living Labs.", description_ja: "海外の学生を富山のリビングラボに迎える、短期集中プログラム。" },
-  { title: "Professional & Policy Training", title_ja: "専門家・政策担当者研修", description: "Executive and policy-track training for practitioners outside the university.", description_ja: "大学外の実務者を対象とした、政策立案者向けの研修プログラム。" },
+  { title: "Sustainability Integration Studio (SIS)", title_ja: "サステナビリティ統合スタジオ（SIS）", description: "A studio-based course where students prototype solutions to real sustainability problems.", description_ja: "学生が実際の持続可能性に関する課題に対する解決策を試作する、スタジオ型の授業です。" },
+  { title: "Interdisciplinary Graduate Education", title_ja: "学際的大学院教育", description: "Cross-department coursework connecting agriculture, engineering, policy, and social science.", description_ja: "農学、工学、政策学、社会科学の分野を横断する、学部間連携の大学院科目です。" },
+  { title: "Project-Based & Field-Based Learning", title_ja: "プロジェクト型・フィールド型学習", description: "Coursework anchored in Living Lab sites rather than the classroom alone.", description_ja: "教室にとどまらず、リビングラボの現場を拠点として学びます。" },
+  { title: "Joint Supervision & Co-creation", title_ja: "共同指導と共創", description: "Students co-supervised across disciplines and, where relevant, across partner institutions.", description_ja: "分野を横断し、必要に応じて連携機関の垣根を越えて、学生を共同で指導します。" },
+  { title: "Student & Faculty Exchange", title_ja: "学生・教員交流", description: "Mobility programs with partner universities, including IIT Kharagpur.", description_ja: "インド工科大学カラグプル校（IIT Kharagpur）をはじめとする連携大学との交流プログラムです。" },
+  { title: "International Summer School", title_ja: "国際サマースクール", description: "A short intensive program bringing international students into Toyama's Living Labs.", description_ja: "海外の学生を富山のリビングラボに迎える、短期集中プログラムです。" },
+  { title: "Professional & Policy Training", title_ja: "専門家・政策担当者研修", description: "Executive and policy-track training for practitioners outside the university.", description_ja: "大学外の実務者や政策立案者を対象とした研修プログラムです。" },
 ].map((c, i) => ({ type: "educationComponent", order: i + 1, ...c }));
 
 const livingLabs = [
-  { title: "Regional Sustainability and Rural Revitalization", title_ja: "地域のサステナビリティと農村再生", description: "Working with rural municipalities on land-use and demographic transition strategies.", description_ja: "農村自治体と連携した、土地利用・人口動態の転換戦略の策定。" },
-  { title: "Climate-Smart Agriculture and Food Systems", title_ja: "気候変動対応型農業と食料システム", description: "Field trials and farmer partnerships piloting climate-resilient cultivation methods.", description_ja: "気候変動に強い栽培法を実証する、圃場試験と農家連携。" },
-  { title: "Sustainable Coastal Communities and Fisheries", title_ja: "持続可能な沿岸地域社会と漁業", description: "Co-research with coastal communities navigating fisheries and livelihood transitions.", description_ja: "漁業と生業の転換に取り組む沿岸地域社会との共同研究。" },
-  { title: "Controlled Environment Agriculture and Hydroponics", title_ja: "環境制御型農業と水耕栽培", description: "Applied research into resource-efficient, climate-controlled growing systems.", description_ja: "省資源・環境制御型の栽培システムに関する応用研究。" },
-  { title: "Japan-India Collaborative Research and Innovation", title_ja: "日印共同研究とイノベーション", description: "Joint projects with IIT Kharagpur spanning agriculture, water, and rural development.", description_ja: "IIT Kharagpurとの農業、水資源、農村開発にまたがる共同プロジェクト。" },
+  { title: "Regional Sustainability and Rural Revitalization", title_ja: "地域の持続可能性と農村振興", description: "Working with rural municipalities on land-use and demographic transition strategies.", description_ja: "自治体と連携し、土地利用の転換や人口構造の変化に対応するための戦略を検討します。" },
+  { title: "Climate-Smart Agriculture and Food Systems", title_ja: "気候変動に対応した農業と食料システム", description: "Field trials and farmer partnerships piloting climate-resilient cultivation methods.", description_ja: "圃場試験や生産者との連携を通じて、気候変動に対してレジリエントな栽培技術の実証に取り組みます。" },
+  { title: "Sustainable Coastal Communities and Fisheries", title_ja: "持続可能な沿岸地域の社会と漁業", description: "Co-research with coastal communities navigating fisheries and livelihood transitions.", description_ja: "生計の変化に直面する沿岸地域のコミュニティと協働し、持続可能な地域社会の実現に向けた共同研究を推進します。" },
+  { title: "Controlled Environment Agriculture and Hydroponics", title_ja: "環境制御型農業と水耕栽培", description: "Applied research into resource-efficient, climate-controlled growing systems.", description_ja: "省資源・環境制御型の栽培システムに関する応用研究を行います。" },
+  { title: "Japan-India Collaborative Research and Innovation", title_ja: "日印共同研究とイノベーション", description: "Joint projects with IIT Kharagpur spanning agriculture, water, and rural development.", description_ja: "インド工科大学カラグプル校（IIT Kharagpur）と、農業、水資源、農村開発にまたがる共同プロジェクトを実施します。" },
 ].map((l, i) => ({ type: "livingLab", order: i + 1, ...l }));
 
 const partnerCategories = [
@@ -104,16 +104,16 @@ const publications = [
 ].map((p, i) => ({ type: "publication", order: i + 1, ...p }));
 
 const events = [
-  { title: "International Summer School on Sustainability Science", title_ja: "サステナビリティ科学 国際サマースクール", subtitle: "Gofuku Campus, University of Toyama", subtitle_ja: "富山大学 五福キャンパス", category: "Training Programme", category_ja: "研修プログラム", date: "2026-08-03" },
-  { title: "Japan-India Living Lab Exchange Workshop", title_ja: "日印リビングラボ交流ワークショップ", subtitle: "With IIT Kharagpur", subtitle_ja: "IIT Kharagpurとの共催", category: "Workshop", category_ja: "ワークショップ", date: "2026-09-14" },
-  { title: "Public Lecture: Climate Adaptation in Agro-Coastal Regions", title_ja: "公開講演：農漁村・沿岸地域における気候変動適応", subtitle: "Speaker: Thomas Elmqvist", subtitle_ja: "講演者：Thomas Elmqvist", category: "Seminar", category_ja: "セミナー", date: "2026-10-05" },
+  { title: "International Summer School on Sustainability Science", title_ja: "サステナビリティサイエンスに関する国際サマースクール", subtitle: "Gofuku Campus, University of Toyama", subtitle_ja: "富山大学　五福キャンパス", category: "Training Programme", category_ja: "研修プログラム", date: "2026-08-03" },
+  { title: "Japan-India Living Lab Exchange Workshop", title_ja: "日本とインドのリビングラボ交流ワークショップ", subtitle: "With IIT Kharagpur", subtitle_ja: "インド工科大学カラグプル校（IIT Kharagpur）との共催", category: "Workshop", category_ja: "ワークショップ", date: "2026-09-14" },
+  { title: "Public Lecture: Climate Adaptation in Agro-Coastal Regions", title_ja: "公開講演：農業・沿岸地域における気候変動に対する適応", subtitle: "Speaker: Thomas Elmqvist", subtitle_ja: "講演者： Thomas Elmqvist", category: "Seminar", category_ja: "セミナー", date: "2026-10-05" },
   { title: "UT-INSPIRE Annual Sustainability Conference", title_ja: "UT-INSPIRE 年次サステナビリティ会議", subtitle: "Toyama International Conference Center", subtitle_ja: "富山国際会議場", category: "Conference", category_ja: "学会・カンファレンス", date: "2026-11-20" },
 ].map((e, i) => ({ type: "event", order: i + 1, ...e }));
 
 const news = [
-  { title: "UT-INSPIRE Launches ReACT Flagship Research Program", title_ja: "UT-INSPIRE、旗艦研究プログラム「ReACT」を始動", description: "The President's Fund-backed initiative formally kicks off with field sites across Toyama's coast.", description_ja: "学長裁量経費による本事業が、富山沿岸の各フィールドサイトで正式に始動しました。", category: "News", category_ja: "ニュース", date: "2026-04-01", link: "https://ut-inspire.u-toyama.ac.jp/news/react-launch" },
-  { title: "GRASS and IIT Kharagpur Sign Renewed MOU", title_ja: "GRASSとIIT Kharagpur、MOU（覚書）を更新", description: "The two institutions extend their collaborative research and student-exchange agreement.", description_ja: "両機関が共同研究および学生交流に関する協定を延長しました。", category: "Press Release", category_ja: "プレスリリース", date: "2026-05-12", link: "https://ut-inspire.u-toyama.ac.jp/news/iit-kharagpur-mou" },
-  { title: "UT-INSPIRE Featured in National Sustainability Broadcast", title_ja: "UT-INSPIRE、全国サステナビリティ放送で特集", description: "Coverage of the Living Lab approach to rural revitalization in Toyama Prefecture.", description_ja: "富山県での農村再生に向けたリビングラボの取り組みが報道されました。", category: "Media Coverage", category_ja: "メディア掲載", date: "2026-06-22" },
+  { title: "UT-INSPIRE Launches ReACT Flagship Research Program", title_ja: "UT-INSPIREが重点研究プログラム「ReACT」を始動", description: "The President's Fund-backed initiative formally kicks off with field sites across Toyama's coast.", description_ja: "本プロジェクトは、富山県の沿岸地域に広がるフィールド拠点を活用して、本格的に活動を開始します。", category: "News", category_ja: "ニュース", date: "2026-04-01", link: "https://ut-inspire.u-toyama.ac.jp/news/react-launch" },
+  { title: "GRASS and IIT Kharagpur Sign Renewed MOU", title_ja: "GRASSとインド工科大学カラグプル校が連携協定を更新", description: "The two institutions extend their collaborative research and student-exchange agreement.", description_ja: "両機関は、共同研究および学生交流に関する協定を延長し、さらなる連携の強化を図ります。", category: "Press Release", category_ja: "プレスリリース", date: "2026-05-12", link: "https://ut-inspire.u-toyama.ac.jp/news/iit-kharagpur-mou" },
+  { title: "UT-INSPIRE Featured in National Sustainability Broadcast", title_ja: "UT-INSPIREの取り組みが、持続可能性をテーマとする全国放送の番組で特集", description: "Coverage of the Living Lab approach to rural revitalization in Toyama Prefecture.", description_ja: "富山県における農村地域の活性化に向けたリビングラボ・アプローチが取り上げられています。", category: "Media Coverage", category_ja: "メディア掲載", date: "2026-06-22" },
 ].map((n, i) => ({ type: "news", order: i + 1, ...n }));
 
 const resources = [

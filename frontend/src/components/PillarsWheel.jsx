@@ -29,7 +29,7 @@ function segmentPath(startDeg, endDeg) {
   ].join(" ");
 }
 
-const PALETTE = ["#17394D", "#5C7A5E", "#C98A2B", "#BF4E3A", "#3F5942"];
+const PALETTE = ["#17394D", "#5C7A5E", "#C98A2B", "#B34632", "#3F5942"];
 
 export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", centerLine2 = "Pillars" }) {
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", cen
         <svg
           viewBox={`0 0 ${SIZE} ${SIZE}`}
           className="w-full h-auto"
-          role="img"
+          role="group"
           aria-label={t("common.pillarsAriaLabel")}
         >
           {/* faint contour rings behind the wheel, echoing the site's topographic motif */}
@@ -122,7 +122,7 @@ export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", cen
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-2">
               {t("common.pillarLabel", { current: String(active + 1).padStart(2, "0"), total: String(n).padStart(2, "0") })}
             </div>
             <h3 className="font-display text-3xl md:text-4xl text-bay mb-4">
@@ -142,8 +142,8 @@ export default function PillarsWheel({ pillars, centerLine1 = "5 Strategic", cen
               onMouseEnter={() => setActive(i)}
               className={`px-3 py-1.5 rounded-full text-xs font-mono border transition-colors ${
                 active === i
-                  ? "border-vermillion text-vermillion bg-vermillion/5"
-                  : "border-bay/20 text-bay/60 hover:border-bay/50"
+                  ? "border-vermillion text-[#9A3A28] bg-vermillion/5"
+                  : "border-bay/20 text-bay/75 hover:border-bay/50"
               }`}
             >
               {String(i + 1).padStart(2, "0")}

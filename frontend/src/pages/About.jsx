@@ -22,12 +22,12 @@ export default function About() {
 
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 sm:py-20 grid md:grid-cols-2 gap-10 sm:gap-12">
         <Reveal>
-          <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">{t("pages.about.vision")}</div>
-          <p className="font-display text-xl sm:text-2xl text-bay leading-snug">{t("welcome.p2")}</p>
+          <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">{t("pages.about.vision")}</div>
+          <p className="font-display text-xl sm:text-2xl text-bay leading-snug">{t("pages.about.visionText")}</p>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">{t("pages.about.mission")}</div>
-          <p className="text-ink/75 leading-relaxed text-base sm:text-lg">{t("welcome.p1")}</p>
+          <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">{t("pages.about.mission")}</div>
+          <p className="text-ink/75 leading-relaxed text-base sm:text-lg">{t("pages.about.missionText")}</p>
         </Reveal>
       </section>
 

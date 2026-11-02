@@ -84,10 +84,13 @@ export default function SearchOverlay({ open, onClose }) {
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("search.openLabel")}
             className="w-full max-w-lg bg-paper border border-bay/15 shadow-2xl"
           >
             <div className="flex items-center gap-3 px-5 py-4 border-b border-bay/10">
-              <Search size={18} className="text-bay/50 shrink-0" />
+              <Search size={18} className="text-bay/70 shrink-0" />
               <input
                 ref={inputRef}
                 value={query}
@@ -96,15 +99,16 @@ export default function SearchOverlay({ open, onClose }) {
                   if (e.key === "Enter" && results[0]) go(results[0].to);
                 }}
                 placeholder={t("search.placeholder")}
-                className="flex-1 bg-transparent outline-none font-body text-base text-ink placeholder:text-ink/40"
+                aria-label={t("search.placeholder")}
+                className="flex-1 bg-transparent outline-none font-body text-base text-ink placeholder:text-ink/60"
               />
-              <button onClick={onClose} aria-label={t("common.closeSearch")} className="text-bay/50 hover:text-vermillion">
+              <button onClick={onClose} aria-label={t("common.closeSearch")} className="text-bay/70 hover:text-vermillion">
                 <X size={18} />
               </button>
             </div>
             <div className="max-h-80 overflow-y-auto py-2">
               {results.length === 0 ? (
-                <div className="px-5 py-6 text-sm text-ink/50 font-mono">{t("search.noResults")}</div>
+                <div className="px-5 py-6 text-sm text-ink/65 font-mono">{t("search.noResults")}</div>
               ) : (
                 results.map((r) => (
                   <button
@@ -113,7 +117,7 @@ export default function SearchOverlay({ open, onClose }) {
                     className="w-full text-left px-5 py-3 hover:bg-bay/5 transition-colors flex items-center justify-between group"
                   >
                     <span className="font-display text-lg text-bay">{r.label}</span>
-                    <span className="font-mono text-[0.65rem] text-bay/30 group-hover:text-vermillion uppercase">
+                    <span className="font-mono text-[0.65rem] text-bay/75 group-hover:text-vermillion uppercase">
                       {r.to}
                     </span>
                   </button>

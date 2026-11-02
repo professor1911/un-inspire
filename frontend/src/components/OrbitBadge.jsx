@@ -88,7 +88,7 @@ export default function OrbitBadge({ centerIcon, satellites = [], size = 168, la
       </motion.div>
       </div>
       {label && (
-        <span className="font-mono text-[0.62rem] uppercase tracking-wider text-bay/50 text-center max-w-[9rem] leading-tight">
+        <span className="font-mono text-[0.62rem] uppercase tracking-wider text-bay/70 text-center max-w-[9rem] leading-tight">
           {label}
         </span>
       )}

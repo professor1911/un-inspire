@@ -71,13 +71,13 @@ export default function ProfileModal({ people, index, onClose, onNavigate }) {
             </div>
 
             <div className="md:col-span-3 p-6 sm:p-8 md:p-10 flex flex-col">
-              <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-2">
                 {t(`pages.people.categories.${person.category}`, { defaultValue: person.category })}
               </div>
               <h3 id="profile-name" className="font-display text-3xl sm:text-4xl text-bay leading-tight pr-8">
                 {loc(person, "title")}
               </h3>
-              {(person.subtitle || person.subtitle_ja) && <div className="mt-1 text-sm text-ink/60">{loc(person, "subtitle")}</div>}
+              {(person.subtitle || person.subtitle_ja) && <div className="mt-1 text-sm text-ink/70">{loc(person, "subtitle")}</div>}
               {(person.description || person.description_ja) && (
                 <p className="mt-5 text-ink/75 leading-relaxed text-[0.95rem]">{loc(person, "description")}</p>
               )}
@@ -101,7 +101,7 @@ export default function ProfileModal({ people, index, onClose, onNavigate }) {
               )}
               {people.length > 1 && (
                 <div className="mt-auto pt-6 flex items-center justify-between">
-                  <span className="font-mono text-xs text-bay/40">
+                  <span className="font-mono text-xs text-bay/65">
                     {index + 1} / {people.length}
                   </span>
                   <div className="flex gap-2">

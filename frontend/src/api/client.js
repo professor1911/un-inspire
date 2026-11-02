@@ -11,11 +11,18 @@ const http = axios.create({ baseURL: API_BASE, timeout: 4000 });
  * previewed on its own), this silently falls back to the bundled local
  * dataset in src/data/content.js so the site still renders fully.
  */
+// Lets the UI (OfflineNotice) tell visitors when they are looking at the bundled copy.
+function announce(name) {
+  if (typeof window !== "undefined") window.dispatchEvent(new Event(name));
+}
+
 export async function fetchItems(type, params = {}) {
   try {
     const { data } = await http.get("/items", { params: { type, ...params } });
+    announce("ut:api-online");
     return { items: data.items, source: "api" };
   } catch (err) {
+    announce("ut:api-offline");
     const items = localItems.filter((i) => {
       if (i.type !== type) return false;
       if (params.category && i.category !== params.category) return false;
@@ -56,6 +63,11 @@ export async function verifyAdminToken(token) {
 export async function fetchAllItemsAdmin(type, token) {
   const { data } = await http.get("/items", { params: { type }, headers: { "x-admin-token": token } });
   return data.items;
+}
+
+export async function fetchItemAdmin(id, token) {
+  const { data } = await http.get(`/items/${id}`, { headers: { "x-admin-token": token } });
+  return data;
 }
 
 export async function createItemAdmin(payload, token) {

@@ -126,7 +126,7 @@ export default function Gallery() {
             >
               <img src={current.image} alt={caption(current)} className="w-full h-auto max-h-[78vh] object-contain" />
               <div className="mt-3 text-paper text-sm text-center leading-snug">{caption(current)}</div>
-              <div className="mt-1 text-paper/50 font-mono text-xs text-center">
+              <div className="mt-1 text-paper/70 font-mono text-xs text-center">
                 {lightbox + 1} / {visible.length}
               </div>
               <button

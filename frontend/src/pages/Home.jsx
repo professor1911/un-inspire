@@ -78,8 +78,9 @@ export default function Home() {
               {t("hero.eyebrow")}
             </div>
             <h1 className={`font-display text-[2.5rem] leading-[1.08] sm:text-6xl md:text-7xl lg:text-8xl max-w-4xl ${isJa ? "font-displayJp" : ""}`}>
-              {t("hero.titleLine1")} {t("hero.titleLine2")}{" "}
-              <span className="text-ochre">{t("hero.titleAccent")}</span> {t("hero.titleEnd")}
+              {/* Japanese is one unspaced sentence split into four pieces; English needs the spaces. */}
+              {t("hero.titleLine1")}{isJa ? "" : " "}{t("hero.titleLine2")}{isJa ? "" : " "}
+              <span className="text-ochre">{t("hero.titleAccent")}</span>{isJa ? "" : " "}{t("hero.titleEnd")}
             </h1>
             <p className="mt-6 sm:mt-7 max-w-xl text-paper/75 text-base sm:text-lg leading-relaxed">
               {t("hero.body")}
@@ -128,13 +129,13 @@ export default function Home() {
             <Reveal delay={0.08}><p>{t("welcome.p2")}</p></Reveal>
             <StaggerGroup className="pt-2 grid sm:grid-cols-2 gap-4">
               <StaggerItem className="border border-bay/15 p-5">
-                <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-2">
+                <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-2">
                   {t("welcome.leadership")}
                 </div>
                 <div className="font-display text-lg text-bay">{t("welcome.presidentMsg")}</div>
               </StaggerItem>
               <StaggerItem className="border border-bay/15 p-5">
-                <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-2">
+                <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-2">
                   {t("welcome.leadership")}
                 </div>
                 <div className="font-display text-lg text-bay">{t("welcome.directorMsg")}</div>
@@ -232,12 +233,12 @@ export default function Home() {
               <div className="font-display text-4xl sm:text-5xl text-vermillion">
                 <AnimatedCounter to={m.stat} suffix={m.suffix || ""} />
               </div>
-              <div className="mt-2 text-sm text-ink/60 font-mono uppercase tracking-wide">{m.label}</div>
+              <div className="mt-2 text-sm text-ink/70 font-mono uppercase tracking-wide">{m.label}</div>
             </div>
           ))}
         </div>
         <Reveal delay={0.15} className="mt-10 flex flex-wrap items-center gap-3 sm:gap-4 border border-ochre/30 bg-ochre/5 px-6 py-5">
-          <div className="font-mono text-xs uppercase tracking-wider text-ochre">{t("impact.featuredPartner")}</div>
+          <div className="font-mono text-xs uppercase tracking-wider text-ochreText">{t("impact.featuredPartner")}</div>
           <div className="font-display text-lg text-bay">{t("iitKharagpur")}</div>
         </Reveal>
       </section>
@@ -255,14 +256,14 @@ export default function Home() {
           <SectionHeading eyebrow={t("stayCurrent.eyebrow")} title={t("stayCurrent.title")} />
           <div className="mt-10 sm:mt-12 grid lg:grid-cols-2 gap-8 sm:gap-10">
             <Reveal>
-              <div className="font-mono text-xs uppercase tracking-wider text-bay/50 mb-4">
+              <div className="font-mono text-xs uppercase tracking-wider text-bay/70 mb-4">
                 {t("stayCurrent.newsLabel")}
               </div>
               <div className="space-y-4">
                 {(news || Array.from({ length: 3 })).map((n, i) => (
                   <div key={n?.title || i} className="border-b border-bay/10 pb-4">
                     <div className="font-display text-lg text-bay">{n ? loc(n, "title") : ""}</div>
-                    <div className="text-sm text-ink/60 mt-1">{n ? loc(n, "description") : ""}</div>
+                    <div className="text-sm text-ink/70 mt-1">{n ? loc(n, "description") : ""}</div>
                   </div>
                 ))}
               </div>
@@ -271,7 +272,7 @@ export default function Home() {
               </Link>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="font-mono text-xs uppercase tracking-wider text-bay/50 mb-4">
+              <div className="font-mono text-xs uppercase tracking-wider text-bay/70 mb-4">
                 {t("stayCurrent.eventsLabel")}
               </div>
               <div className="space-y-4">
@@ -279,7 +280,7 @@ export default function Home() {
                   <div key={e?.title || i} className="border-b border-bay/10 pb-4 flex justify-between gap-4">
                     <div>
                       <div className="font-display text-lg text-bay">{e ? loc(e, "title") : ""}</div>
-                      <div className="text-sm text-ink/60 mt-1">{e ? loc(e, "subtitle") : ""}</div>
+                      <div className="text-sm text-ink/70 mt-1">{e ? loc(e, "subtitle") : ""}</div>
                     </div>
                     {e?.date && (
                       <div className="font-mono text-xs text-vermillion whitespace-nowrap shrink-0">

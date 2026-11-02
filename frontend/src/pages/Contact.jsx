@@ -15,9 +15,12 @@ const SUBJECT_KEYS = [
   "livingLabPartnership",
 ];
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const LIMITS = { name: 120, email: 254, message: 5000 };
+
 export default function Contact() {
   const { t } = useTranslation();
-  const [form, setForm] = useState({ name: "", email: "", subject: t("contactSubjects.generalInquiry"), message: "" });
+  const [form, setForm] = useState({ name: "", email: "", subject: t("contactSubjects.generalInquiry"), message: "", website: "" });
   const [status, setStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -25,14 +28,32 @@ export default function Contact() {
     return (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   }
 
+  function validate() {
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+    if (!name || !email || !message) return t("contactErrors.required");
+    if (!EMAIL_PATTERN.test(email)) return t("contactErrors.emailInvalid");
+    if (name.length > LIMITS.name) return t("contactErrors.nameTooLong");
+    if (message.length > LIMITS.message) return t("contactErrors.messageTooLong");
+    return "";
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+    if (status === "sending") return;
+    const problem = validate();
+    if (problem) {
+      setStatus("error");
+      setErrorMsg(problem);
+      return;
+    }
     setStatus("sending");
     setErrorMsg("");
     try {
       await submitContact(form);
       setStatus("sent");
-      setForm({ name: "", email: "", subject: t("contactSubjects.generalInquiry"), message: "" });
+      setForm({ name: "", email: "", subject: t("contactSubjects.generalInquiry"), message: "", website: "" });
     } catch (err) {
       setStatus("error");
       setErrorMsg(
@@ -51,7 +72,7 @@ export default function Contact() {
 
       <section className="mx-auto max-w-7xl px-5 md:px-8 py-16 sm:py-20 grid lg:grid-cols-2 gap-12 sm:gap-16">
         <Reveal>
-          <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">
+          <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">
             {t("pages.contact.visitOrWrite")}
           </div>
           <div className="space-y-6">
@@ -86,32 +107,34 @@ export default function Contact() {
         <Reveal delay={0.1}>
           <form onSubmit={handleSubmit} className="space-y-5" noValidate>
             <div>
-              <label htmlFor="name" className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+              <label htmlFor="name" className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
                 {t("pages.contact.formName")}
               </label>
               <input
                 id="name"
                 required
+                maxLength={LIMITS.name}
                 value={form.name}
                 onChange={update("name")}
                 className="w-full border border-bay/25 bg-white/50 px-4 py-3 focus:border-vermillion outline-none transition-colors"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+              <label htmlFor="email" className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
                 {t("pages.contact.formEmail")}
               </label>
               <input
                 id="email"
                 type="email"
                 required
+                maxLength={LIMITS.email}
                 value={form.email}
                 onChange={update("email")}
                 className="w-full border border-bay/25 bg-white/50 px-4 py-3 focus:border-vermillion outline-none transition-colors"
               />
             </div>
             <div>
-              <label htmlFor="subject" className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+              <label htmlFor="subject" className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
                 {t("pages.contact.formSubject")}
               </label>
               <select
@@ -126,16 +149,30 @@ export default function Contact() {
               </select>
             </div>
             <div>
-              <label htmlFor="message" className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+              <label htmlFor="message" className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
                 {t("pages.contact.formMessage")}
               </label>
               <textarea
                 id="message"
                 required
+                maxLength={LIMITS.message}
                 rows={5}
                 value={form.message}
                 onChange={update("message")}
                 className="w-full border border-bay/25 bg-white/50 px-4 py-3 focus:border-vermillion outline-none transition-colors resize-none"
+              />
+            </div>
+
+            {/* Honeypot: invisible to people and assistive tech, bots tend to fill it in. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+              <label htmlFor="website">Website</label>
+              <input
+                id="website"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={update("website")}
               />
             </div>
 

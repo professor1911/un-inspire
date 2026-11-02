@@ -77,7 +77,7 @@ export default function People() {
 
       <section className="relative overflow-hidden bg-bay text-paper bg-contours">
         <Reveal className="mx-auto max-w-7xl px-5 md:px-8 py-16 sm:py-20 text-center">
-          <div className="font-mono text-xs uppercase tracking-[0.2em] text-ochre mb-4">UT-INSPIRE</div>
+          <div className="font-mono text-xs uppercase tracking-[0.2em] text-ochreText mb-4">UT-INSPIRE</div>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-tight">{t("slogan")}</h2>
         </Reveal>
       </section>

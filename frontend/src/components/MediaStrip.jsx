@@ -32,7 +32,7 @@ export default function MediaStrip({ stripKey, dim = true }) {
                       transition={{ duration: 0.5, ease: "easeOut" }}
                     />
                   </div>
-                  <figcaption className="mt-2 text-xs text-ink/60 leading-snug">{ja ? p.subtitle : p.title}</figcaption>
+                  <figcaption className="mt-2 text-xs text-ink/70 leading-snug">{ja ? p.subtitle : p.title}</figcaption>
                 </figure>
               </StaggerItem>
             ))}

@@ -25,7 +25,7 @@ export default function ImageUploadField({ value, onChange }) {
 
   return (
     <div>
-      <label className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+      <label className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
         {t("admin.imageLabel")}
       </label>
       <div className="flex items-start gap-3">
@@ -45,7 +45,7 @@ export default function ImageUploadField({ value, onChange }) {
             </button>
           </div>
         ) : (
-          <div className="w-16 h-16 shrink-0 border border-dashed border-bay/25 rounded flex items-center justify-center text-bay/30">
+          <div className="w-16 h-16 shrink-0 border border-dashed border-bay/25 rounded flex items-center justify-center text-bay/60">
             <Upload size={18} />
           </div>
         )}
@@ -61,7 +61,7 @@ export default function ImageUploadField({ value, onChange }) {
             type="file"
             accept="image/*"
             onChange={handleFile}
-            className="block w-full text-xs font-mono text-bay/60 file:mr-3 file:px-3 file:py-1.5 file:border file:border-bay/25 file:bg-white file:text-xs file:font-mono file:uppercase file:cursor-pointer"
+            className="block w-full text-xs font-mono text-bay/75 file:mr-3 file:px-3 file:py-1.5 file:border file:border-bay/25 file:bg-white file:text-xs file:font-mono file:uppercase file:cursor-pointer"
           />
           {error && <p className="text-xs text-vermillion font-mono">{error}</p>}
         </div>

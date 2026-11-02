@@ -140,7 +140,7 @@ export default function Header() {
               <span className="font-display text-xl sm:text-2xl tracking-tight text-bay font-semibold">
                 UT<span className="text-vermillion">·</span>INSPIRE
               </span>
-              <span className="font-bodyJp text-[0.6rem] sm:text-[0.65rem] tracking-[0.15em] text-bay/45 mt-1">
+              <span className="font-bodyJp text-[0.6rem] sm:text-[0.65rem] tracking-[0.15em] text-bay/75 mt-1">
                 富山大学 &nbsp;University of Toyama
               </span>
             </div>

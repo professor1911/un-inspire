@@ -74,9 +74,9 @@ export default function Publications() {
                   {visible.map((pub) => (
                     <StaggerItem key={pub.title} className="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                       <div>
-                        <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5">{loc(pub, "category") || pub.category}</div>
+                        <div className="font-mono text-xs uppercase tracking-wide text-ochreText mb-1.5">{loc(pub, "category") || pub.category}</div>
                         <div className="font-display text-lg sm:text-xl text-bay leading-snug">{loc(pub, "title")}</div>
-                        {(pub.subtitle || pub.subtitle_ja) && <div className="text-sm text-ink/60 mt-1">{loc(pub, "subtitle")}</div>}
+                        {(pub.subtitle || pub.subtitle_ja) && <div className="text-sm text-ink/70 mt-1">{loc(pub, "subtitle")}</div>}
                         {pub.link && (
                           <a
                             href={pub.link}
@@ -89,7 +89,7 @@ export default function Publications() {
                         )}
                       </div>
                       {pub.date && (
-                        <div className="font-mono text-xs text-bay/50 whitespace-nowrap shrink-0 sm:pt-1">
+                        <div className="font-mono text-xs text-bay/70 whitespace-nowrap shrink-0 sm:pt-1">
                           {new Date(pub.date).toLocaleDateString(dateLoc, { year: "numeric", month: "short" })}
                         </div>
                       )}

@@ -20,7 +20,8 @@ export default {
         terrace: "#5C7A5E",
         terraceDeep: "#3F5942",
         ochre: "#C98A2B",
-        vermillion: "#BF4E3A",
+        ochreText: "#8A5A0F",
+        vermillion: "#B34632",
       },
       fontFamily: {
         display: ["Fraunces", "Noto Serif JP", "serif"],

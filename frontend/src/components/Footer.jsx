@@ -16,9 +16,9 @@ export default function Footer() {
           <div className="font-display text-2xl mb-1">
             UT<span className="text-vermillion">·</span>INSPIRE
           </div>
-          <div className="font-bodyJp text-xs text-paper/40 mb-3 tracking-wide">富山大学</div>
+          <div className="font-bodyJp text-xs text-paper/70 mb-3 tracking-wide">富山大学</div>
           <div className="font-display italic text-ochre text-base mb-4">{t("slogan")}</div>
-          <p className="text-sm text-paper/60 max-w-sm leading-relaxed">{t("footer.description")}</p>
+          <p className="text-sm text-paper/70 max-w-sm leading-relaxed">{t("footer.description")}</p>
         </div>
 
         <div>
@@ -49,7 +49,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-paper/10">
-        <div className="mx-auto max-w-7xl px-5 md:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-paper/50 font-mono text-center sm:text-left">
+        <div className="mx-auto max-w-7xl px-5 md:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-paper/70 font-mono text-center sm:text-left">
           <span>&copy; {new Date().getFullYear()} UT-INSPIRE, University of Toyama. {t("footer.rights")}</span>
           <span>{t("footer.slogan")}</span>
         </div>

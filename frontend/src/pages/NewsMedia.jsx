@@ -38,7 +38,7 @@ export default function NewsMedia() {
               {news.map((n) => (
                 <StaggerItem key={n.title}>
                   <TiltCard className="border border-bay/15 p-6 bg-white/40 flex flex-col h-full">
-                    <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-3">
+                    <div className="font-mono text-xs uppercase tracking-wide text-ochreText mb-3">
                       {loc(n, "category") || n.category}
                       {n.date && ` · ${new Date(n.date).toLocaleDateString(dateLoc, { month: "short", year: "numeric" })}`}
                     </div>

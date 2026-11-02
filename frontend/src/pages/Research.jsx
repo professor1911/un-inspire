@@ -71,7 +71,7 @@ export default function Research() {
               <StaggerGroup className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {themes.map((th, i) => (
                   <StaggerItem key={th.title} className="bg-white/50 border border-bay/10 p-5">
-                    <div className="font-mono text-xs text-bay/40 mb-2">{String(i + 1).padStart(2, "0")}</div>
+                    <div className="font-mono text-xs text-bay/65 mb-2">{String(i + 1).padStart(2, "0")}</div>
                     <div className="font-display text-base text-bay leading-snug">{loc(th, "title")}</div>
                   </StaggerItem>
                 ))}

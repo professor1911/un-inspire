@@ -35,7 +35,7 @@ export default function Partnerships() {
             className="w-40 sm:w-48 shrink-0"
           />
           <Reveal className="flex-1 border border-ochre/30 bg-ochre/5 px-6 sm:px-8 py-6 sm:py-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-            <div className="font-mono text-xs uppercase tracking-wider text-ochre shrink-0">{t("impact.featuredPartner")}</div>
+            <div className="font-mono text-xs uppercase tracking-wider text-ochreText shrink-0">{t("impact.featuredPartner")}</div>
             <div className="font-display text-xl sm:text-2xl text-bay">
               {t("iitKharagpur")}
             </div>
@@ -50,7 +50,7 @@ export default function Partnerships() {
             <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {categories.map((c, i) => (
                 <StaggerItem key={c.title} className="border border-bay/15 p-6">
-                  <div className="font-mono text-xs text-bay/40 mb-2">{String(i + 1).padStart(2, "0")}</div>
+                  <div className="font-mono text-xs text-bay/65 mb-2">{String(i + 1).padStart(2, "0")}</div>
                   <div className="font-display text-lg text-bay">{loc(c, "title")}</div>
                 </StaggerItem>
               ))}

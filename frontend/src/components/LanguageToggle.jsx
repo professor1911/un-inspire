@@ -23,7 +23,7 @@ export default function LanguageToggle({ className = "" }) {
           onClick={() => setLang(l.code)}
           aria-pressed={current === l.code}
           className={`px-3 py-1 rounded-full transition-colors ${
-            current === l.code ? "bg-bay text-paper" : "text-bay/60 hover:text-bay"
+            current === l.code ? "bg-paper text-bayDeep" : "text-paper/75 hover:text-paper"
           }`}
         >
           {l.label}

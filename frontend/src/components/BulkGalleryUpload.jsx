@@ -7,6 +7,18 @@ const MAX_BYTES = 700 * 1024;
 
 const inputCls = "w-full border border-bay/25 bg-white px-4 py-2.5 focus:border-vermillion outline-none";
 
+// The file's declared type and its first bytes must both say "image": a renamed HTML/script file is refused.
+async function looksLikeImage(file) {
+  const type = file.type;
+  if (!["image/png", "image/jpeg", "image/webp", "image/gif"].includes(type)) return false;
+  const b = new Uint8Array(await file.slice(0, 12).arrayBuffer());
+  const ascii = (from, to) => String.fromCharCode(...b.slice(from, to));
+  if (type === "image/png") return b[0] === 0x89 && ascii(1, 4) === "PNG";
+  if (type === "image/jpeg") return b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff;
+  if (type === "image/gif") return ascii(0, 4) === "GIF8";
+  return ascii(0, 4) === "RIFF" && ascii(8, 12) === "WEBP";
+}
+
 export default function BulkGalleryUpload({ token, categories, onDone }) {
   const { t } = useTranslation();
   const fileRef = useRef(null);
@@ -16,24 +28,26 @@ export default function BulkGalleryUpload({ token, categories, onDone }) {
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const [errors, setErrors] = useState([]);
 
-  function handleFiles(e) {
+  async function handleFiles(e) {
     const files = Array.from(e.target.files || []);
+    e.target.value = "";
     if (!files.length) return;
 
     const tooLarge = [];
+    const notImages = [];
     const valid = [];
 
-    files.forEach((file) => {
-      if (file.size > MAX_BYTES) {
-        tooLarge.push(file.name);
-      } else {
-        valid.push(file);
-      }
-    });
-
-    if (tooLarge.length) {
-      setErrors((prev) => [...prev, ...tooLarge.map((n) => `${n}: exceeds 700 KB`)]);
+    for (const file of files) {
+      if (file.size > MAX_BYTES) tooLarge.push(file.name);
+      else if (!(await looksLikeImage(file))) notImages.push(file.name);
+      else valid.push(file);
     }
+
+    const problems = [
+      ...tooLarge.map((n) => `${n}: exceeds 700 KB`),
+      ...notImages.map((n) => `${n}: not a PNG, JPEG, WebP or GIF image`),
+    ];
+    if (problems.length) setErrors((prev) => [...prev, ...problems]);
 
     valid.forEach((file) => {
       const reader = new FileReader();
@@ -42,8 +56,6 @@ export default function BulkGalleryUpload({ token, categories, onDone }) {
       };
       reader.readAsDataURL(file);
     });
-
-    e.target.value = "";
   }
 
   function removeImage(idx) {
@@ -98,17 +110,17 @@ export default function BulkGalleryUpload({ token, categories, onDone }) {
 
   return (
     <div className="border border-dashed border-bay/25 p-6 mb-12 bg-white/40">
-      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-ochre mb-4">
+      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-ochreText mb-4">
         <ImagePlus size={16} />
         Bulk Upload — Gallery Photos
       </div>
 
       <div className="space-y-4">
         <div>
-          <label className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+          <label htmlFor="bulk-category" className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
             {t("admin.categoryLabel")}
           </label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputCls}>
+          <select id="bulk-category" value={category} onChange={(e) => setCategory(e.target.value)} className={inputCls}>
             <option value="" disabled>Select category for all photos</option>
             {categories.map((c) => (
               <option key={c} value={c}>{c}</option>
@@ -117,16 +129,17 @@ export default function BulkGalleryUpload({ token, categories, onDone }) {
         </div>
 
         <div>
-          <label className="block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5">
+          <label htmlFor="bulk-files" className="block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5">
             Select Images
           </label>
           <label className="flex items-center gap-3 border border-bay/25 bg-white px-4 py-3 cursor-pointer hover:border-vermillion transition-colors">
-            <Upload size={18} className="text-bay/50" />
-            <span className="font-mono text-sm text-bay/60">
+            <Upload size={18} className="text-bay/70" />
+            <span className="font-mono text-sm text-bay/75">
               {images.length ? `${images.length} image(s) selected — click to add more` : "Click to select images…"}
             </span>
             <input
               ref={fileRef}
+              id="bulk-files"
               type="file"
               accept="image/*"
               multiple
@@ -134,7 +147,7 @@ export default function BulkGalleryUpload({ token, categories, onDone }) {
               className="hidden"
             />
           </label>
-          <p className="text-xs text-bay/40 font-mono mt-1">Max 700 KB per image · JPG, PNG, WebP</p>
+          <p className="text-xs text-bay/65 font-mono mt-1">Max 700 KB per image · JPG, PNG, WebP</p>
         </div>
 
         {images.length > 0 && (
@@ -145,7 +158,8 @@ export default function BulkGalleryUpload({ token, categories, onDone }) {
                 <button
                   type="button"
                   onClick={() => removeImage(idx)}
-                  className="absolute top-1 right-1 w-6 h-6 rounded-full bg-vermillion text-paper flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  aria-label={`${t("common.removeImage")}: ${img.name}`}
+                  className="absolute top-1 right-1 w-8 h-8 rounded-full bg-vermillion text-paper flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus-visible:opacity-100 transition-opacity"
                 >
                   <X size={12} />
                 </button>

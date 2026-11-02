@@ -42,18 +42,18 @@ export default function Events() {
                       {d && (
                         <>
                           <div className="font-display text-xl sm:text-2xl text-vermillion leading-none">{d.getDate()}</div>
-                          <div className="font-mono text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide text-bay/50 mt-1">
+                          <div className="font-mono text-[0.6rem] sm:text-[0.65rem] uppercase tracking-wide text-bay/70 mt-1">
                             {d.toLocaleDateString(dateLoc, { month: "short", year: "numeric" })}
                           </div>
                         </>
                       )}
                     </div>
                     <div>
-                      <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5 flex items-center gap-1.5">
+                      <div className="font-mono text-xs uppercase tracking-wide text-ochreText mb-1.5 flex items-center gap-1.5">
                         <CalendarDays size={12} /> {loc(e, "category") || e.category}
                       </div>
                       <div className="font-display text-lg sm:text-xl text-bay">{loc(e, "title")}</div>
-                      {(e.subtitle || e.subtitle_ja) && <div className="text-sm text-ink/60 mt-1">{loc(e, "subtitle")}</div>}
+                      {(e.subtitle || e.subtitle_ja) && <div className="text-sm text-ink/70 mt-1">{loc(e, "subtitle")}</div>}
                     </div>
                   </StaggerItem>
                 );

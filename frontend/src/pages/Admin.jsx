@@ -4,6 +4,7 @@ import { Trash2, Lock, Unlock, Pencil } from "lucide-react";
 import {
   verifyAdminToken,
   fetchAllItemsAdmin,
+  fetchItemAdmin,
   createItemAdmin,
   updateItemAdmin,
   deleteItemAdmin,
@@ -85,7 +86,7 @@ const toForm = (it) => ({
 });
 
 const inputCls = "w-full border border-bay/25 bg-white px-4 py-2.5 focus:border-vermillion outline-none";
-const labelCls = "block font-mono text-xs uppercase tracking-wide text-bay/60 mb-1.5";
+const labelCls = "block font-mono text-xs uppercase tracking-wide text-bay/75 mb-1.5";
 const Field = ({ id, label, children }) => (
   <div>
     <label htmlFor={id} className={labelCls}>{label}</label>
@@ -104,6 +105,7 @@ export default function Admin() {
   const [type, setType] = useState("person");
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
+  const [editingVersion, setEditingVersion] = useState(null);
   const [saving, setSaving] = useState(false);
   const [saveMsg, setSaveMsg] = useState("");
 
@@ -161,6 +163,7 @@ export default function Admin() {
 
   function resetForm() {
     setEditingId(null);
+    setEditingVersion(null);
     setForm(emptyForm);
   }
 
@@ -170,11 +173,18 @@ export default function Admin() {
     setSaveMsg("");
   }
 
-  function startEdit(item) {
-    setEditingId(item._id);
-    setForm(toForm(item));
+  // The list only carries image URLs, so load the full item (with its stored image data) before editing.
+  async function startEdit(item) {
     setSaveMsg("");
-    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    try {
+      const full = await fetchItemAdmin(item._id, token);
+      setEditingId(full._id);
+      setEditingVersion(full.__v ?? 0);
+      setForm(toForm(full));
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch {
+      setSaveMsg(t("admin.loadError"));
+    }
   }
 
   async function handleSubmit(e) {
@@ -192,7 +202,8 @@ export default function Admin() {
     });
     try {
       if (editingId) {
-        await updateItemAdmin(editingId, payload, token);
+        // __v makes the server refuse the save if someone else changed this item meanwhile (409)
+        await updateItemAdmin(editingId, { ...payload, __v: editingVersion }, token);
         setSaveMsg(t("admin.saved"));
       } else {
         await createItemAdmin({ type, ...payload }, token);
@@ -221,9 +232,9 @@ export default function Admin() {
   if (!unlocked) {
     return (
       <div className="mx-auto max-w-md px-5 py-24">
-        <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">{t("admin.title")}</div>
+        <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">{t("admin.title")}</div>
         <h1 className="font-display text-3xl text-bay mb-2">{t("admin.title")}</h1>
-        <p className="text-ink/60 text-sm mb-8">{t("admin.subtitle")}</p>
+        <p className="text-ink/70 text-sm mb-8">{t("admin.subtitle")}</p>
         <form onSubmit={handleUnlock} className="space-y-4">
           <Field id="admin-token" label={t("admin.tokenLabel")}>
             <input
@@ -256,9 +267,9 @@ export default function Admin() {
     <div className="mx-auto max-w-4xl px-5 py-16">
       <div className="flex items-start justify-between gap-4 mb-10">
         <div>
-          <div className="font-mono text-xs uppercase tracking-wider text-ochre mb-3">{t("admin.title")}</div>
+          <div className="font-mono text-xs uppercase tracking-wider text-ochreText mb-3">{t("admin.title")}</div>
           <h1 className="font-display text-3xl text-bay">{t("admin.title")}</h1>
-          <p className="text-ink/60 text-sm mt-1">{t("admin.subtitle")}</p>
+          <p className="text-ink/70 text-sm mt-1">{t("admin.subtitle")}</p>
         </div>
         <button
           onClick={lock}
@@ -288,14 +299,14 @@ export default function Admin() {
         className={`border p-6 space-y-4 mb-12 scroll-mt-28 ${editingId ? "border-ochre bg-ochre/5" : "border-bay/15 bg-white/40"}`}
       >
         <div className="flex items-center justify-between gap-4">
-          <div className="font-mono text-xs uppercase tracking-wider text-ochre">
+          <div className="font-mono text-xs uppercase tracking-wider text-ochreText">
             {editingId ? `${t("admin.editing")}: ${form.title || "…"}` : t("admin.addNew")} · {cfg.label}
           </div>
           {editingId && (
             <button
               type="button"
               onClick={resetForm}
-              className="font-mono text-xs uppercase tracking-wide text-bay/60 hover:text-vermillion"
+              className="font-mono text-xs uppercase tracking-wide text-bay/75 hover:text-vermillion"
             >
               {t("admin.cancelEdit")}
             </button>
@@ -403,7 +414,7 @@ export default function Admin() {
       )}
 
       <div>
-        <div className="font-mono text-xs uppercase tracking-wider text-bay/50 mb-4">
+        <div className="font-mono text-xs uppercase tracking-wider text-bay/70 mb-4">
           {t("admin.existingItems")} - {cfg.label} ({items.length})
         </div>
         {listError && <p className="text-sm text-vermillion font-mono mb-4">{listError}</p>}
@@ -417,21 +428,21 @@ export default function Admin() {
                 {it.image && <img src={it.image} alt="" className="w-9 h-9 rounded object-cover border border-bay/10 shrink-0" />}
                 <div className="min-w-0">
                   <div className="font-display text-base text-bay truncate">{it.title}</div>
-                  <div className="text-xs text-ink/50 font-mono truncate">{it.category || it.subtitle}</div>
+                  <div className="text-xs text-ink/65 font-mono truncate">{it.category || it.subtitle}</div>
                 </div>
               </div>
               <div className="flex shrink-0">
                 <button
                   onClick={() => startEdit(it)}
                   aria-label={`${t("admin.edit")} ${it.title}`}
-                  className="w-9 h-9 flex items-center justify-center text-bay/40 hover:text-ochre transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-bay/65 hover:text-ochre transition-colors"
                 >
                   <Pencil size={16} />
                 </button>
                 <button
                   onClick={() => handleDelete(it._id)}
                   aria-label={`${t("admin.delete")} ${it.title}`}
-                  className="w-9 h-9 flex items-center justify-center text-bay/40 hover:text-vermillion transition-colors"
+                  className="w-9 h-9 flex items-center justify-center text-bay/65 hover:text-vermillion transition-colors"
                 >
                   <Trash2 size={16} />
                 </button>
@@ -439,7 +450,7 @@ export default function Admin() {
             </div>
           ))}
           {items.length === 0 && !listError && (
-            <div className="py-6 text-sm text-ink/40 font-mono">{t("common.empty")}</div>
+            <div className="py-6 text-sm text-ink/60 font-mono">{t("common.empty")}</div>
           )}
         </div>
       </div>

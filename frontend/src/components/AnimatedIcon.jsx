@@ -50,7 +50,7 @@ export default function AnimatedIcon({
         <Icon size={Math.round(size * 0.42)} color={color} strokeWidth={1.6} />
       </motion.div>
       {label && (
-        <span className="font-mono text-[0.62rem] uppercase tracking-wider text-bay/50 text-center max-w-[7rem] leading-tight">
+        <span className="font-mono text-[0.62rem] uppercase tracking-wider text-bay/70 text-center max-w-[7rem] leading-tight">
           {label}
         </span>
       )}

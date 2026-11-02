@@ -65,7 +65,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #BF4E3A;
+  outline: 2px solid #B34632;
   outline-offset: 3px;
 }
 
@@ -80,6 +80,30 @@ body {
 .lang-ja .font-mono {
   font-family: "Noto Sans JP", "IBM Plex Mono", monospace;
   letter-spacing: 0.02em;
+}
+
+/* Japanese line breaking and rhythm. Japanese has no spaces to break on, so the default rules leave
+   stranded characters (a lone "ム" on a line) and split words mid-phrase. English is not affected. */
+.lang-ja {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+.lang-ja :is(h1, h2, h3) {
+  text-wrap: balance;
+  word-break: auto-phrase; /* phrase-aware breaks where supported (Chromium); ignored elsewhere */
+  line-height: 1.3;
+}
+.lang-ja p {
+  text-wrap: pretty;
+}
+/* Approved Japanese sometimes contains a deliberate line break (footer, two-paragraph blocks). */
+.lang-ja :is(p, h1, h2, h3, address div) {
+  white-space: pre-line;
+}
+/* The ticker's CSS `uppercase` would turn the approved "SDGs" into "SDGS". */
+.lang-ja .marquee-track {
+  text-transform: none;
 }
 
 /* Falling sakura petals in the hero - decorative, culturally-grounded motion.
@@ -111,7 +135,7 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #BF4E3A, #C98A2B);
+  background: linear-gradient(90deg, #B34632, #C98A2B);
   z-index: 60;
   transform-origin: left;
 }

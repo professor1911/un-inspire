@@ -48,7 +48,7 @@ export default function Resources() {
                       <Icon size={20} />
                     </div>
                     <div>
-                      <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-1.5">{loc(r, "category") || r.category}</div>
+                      <div className="font-mono text-xs uppercase tracking-wide text-ochreText mb-1.5">{loc(r, "category") || r.category}</div>
                       <div className="font-display text-lg text-bay leading-snug">{loc(r, "title")}</div>
                       {r.link && (
                         <a

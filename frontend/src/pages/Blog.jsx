@@ -45,7 +45,7 @@ export default function Blog() {
                       />
                     )}
                     <div className="p-6 flex flex-col flex-1">
-                      <div className="font-mono text-xs uppercase tracking-wide text-ochre mb-2">
+                      <div className="font-mono text-xs uppercase tracking-wide text-ochreText mb-2">
                         {loc(post, "category") || post.category}
                         {post.date && ` · ${new Date(post.date).toLocaleDateString(dateLoc, { year: "numeric", month: "short", day: "numeric" })}`}
                       </div>

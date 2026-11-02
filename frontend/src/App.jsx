@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
@@ -7,24 +8,34 @@ import LenisProvider from "./components/LenisProvider.jsx";
 import ScrollProgress from "./components/ScrollProgress.jsx";
 import CursorGlow from "./components/CursorGlow.jsx";
 import BackToTop from "./components/BackToTop.jsx";
+import OfflineNotice from "./components/OfflineNotice.jsx";
 
 import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import Research from "./pages/Research.jsx";
-import Education from "./pages/Education.jsx";
-import LivingLabs from "./pages/LivingLabs.jsx";
-import Partnerships from "./pages/Partnerships.jsx";
-import People from "./pages/People.jsx";
-import Publications from "./pages/Publications.jsx";
-import Events from "./pages/Events.jsx";
-import NewsMedia from "./pages/NewsMedia.jsx";
-import Resources from "./pages/Resources.jsx";
-import SDGs from "./pages/SDGs.jsx";
-import Gallery from "./pages/Gallery.jsx";
-import Blog from "./pages/Blog.jsx";
-import Contact from "./pages/Contact.jsx";
-import Admin from "./pages/Admin.jsx";
-import NotFound from "./pages/NotFound.jsx";
+const About = lazy(() => import("./pages/About.jsx"));
+const Research = lazy(() => import("./pages/Research.jsx"));
+const Education = lazy(() => import("./pages/Education.jsx"));
+const LivingLabs = lazy(() => import("./pages/LivingLabs.jsx"));
+const Partnerships = lazy(() => import("./pages/Partnerships.jsx"));
+const People = lazy(() => import("./pages/People.jsx"));
+const Publications = lazy(() => import("./pages/Publications.jsx"));
+const Events = lazy(() => import("./pages/Events.jsx"));
+const NewsMedia = lazy(() => import("./pages/NewsMedia.jsx"));
+const Resources = lazy(() => import("./pages/Resources.jsx"));
+const SDGs = lazy(() => import("./pages/SDGs.jsx"));
+const Gallery = lazy(() => import("./pages/Gallery.jsx"));
+const Blog = lazy(() => import("./pages/Blog.jsx"));
+const Contact = lazy(() => import("./pages/Contact.jsx"));
+const Admin = lazy(() => import("./pages/Admin.jsx"));
+const NotFound = lazy(() => import("./pages/NotFound.jsx"));
+
+function PageFallback() {
+  const { t } = useTranslation();
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center font-mono text-xs uppercase tracking-wider text-bay/70" role="status">
+      {t("common.loading")}…
+    </div>
+  );
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -51,6 +62,7 @@ function AnimatedRoutes() {
         animate="animate"
         exit="exit"
       >
+        <Suspense fallback={<PageFallback />}>
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -70,6 +82,7 @@ function AnimatedRoutes() {
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </motion.div>
     </AnimatePresence>
   );
@@ -83,6 +96,7 @@ export default function App() {
         <ScrollProgress />
         <CursorGlow />
         <Header />
+        <OfflineNotice />
         <main className="flex-1">
           <AnimatedRoutes />
         </main>
